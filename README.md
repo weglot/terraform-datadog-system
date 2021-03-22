@@ -1,7 +1,19 @@
-
-[//]: # (This file is generated. Do not edit)
-
 # system
+
+Example usage:
+```terraform
+module "system" {
+  source = "git@github.com:kabisa/terraform-datadog-system.git?ref=0.1"
+  env                             = "prd"
+  filter_str                      = "app:myapp"
+  required_services_config        = {
+    sshd : {}
+  }
+  notification_channel            = "@kabisa"
+  service                         = "myapp"
+}
+```
+
 
 TOC:
 <!--ts-->
