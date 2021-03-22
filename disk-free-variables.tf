@@ -5,8 +5,8 @@ variable "disk_free_enabled" {
 
 variable "disk_free_warning" {
   type    = number
-  default = 25
-  # 25 %
+  default = 20
+  # 20 %
 }
 
 variable "disk_free_critical" {
