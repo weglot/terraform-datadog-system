@@ -10,7 +10,7 @@ module "dd_agent_data" {
 
   type  = "service check"
   name  = "System - Datadog data missing"
-  query = "\"datadog.agent.up\".over(\"${local.dd_agent_data_filter}\").by(\"host\").last(${var.dd_agent_data_freshness_minutes}).count_by_status()"
+  query = "\"datadog.agent.up\".over(${local.dd_agent_data_filter}).by(\"host\").last(${var.dd_agent_data_freshness_minutes}).count_by_status()"
 
   enabled          = var.dd_agent_data_enabled
   alerting_enabled = var.dd_agent_data_alerting_enabled
