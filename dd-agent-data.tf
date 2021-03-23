@@ -1,8 +1,8 @@
 locals {
-  dd_agent_data_filter = coalesce(
-    var.dd_agent_data_filter_override,
-    var.filter_str
-  )
+  dd_agent_data_filter_coalesced = "service:stonebranch,env:prd"
+  dd_agent_data_filter_splitted = split(",", local.dd_agent_data_filter_coalesced)
+  dd_agent_data_filter_newlist = [for tag in local.dd_agent_data_filter_splitted : "\"${tag}\""]
+  dd_agent_data_filter = join(",", local.dd_agent_data_filter_newlist)
 }
 
 module "dd_agent_data" {
