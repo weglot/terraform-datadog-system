@@ -1,12 +1,12 @@
 locals {
   reboot_filter = coalesce(
-    var.reboot_filter_override,
-    var.filter_str
+  var.reboot_filter_override,
+  var.filter_str
   )
 }
 
 module "uptime" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.3"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.4"
 
   name  = "Sytem - Reboot detected"
   query = "min(last_5m):derivative(max:system.uptime{${local.reboot_filter}} by {host}) < 0"
@@ -27,6 +27,7 @@ module "uptime" {
   notification_channel = var.notification_channel
 
   require_full_window = false
+  locked              = var.locked
 
   critical_threshold = 0
 }

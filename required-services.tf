@@ -1,12 +1,12 @@
 locals {
   required_services_filter = coalesce(
-    var.required_services_filter_override,
-    var.filter_str
+  var.required_services_filter_override,
+  var.filter_str
   )
 }
 
 module "required_services" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.3"
+  source   = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.4"
   for_each = var.required_services_config
 
   name  = "System - ${upper(substr(each.key, 0, 1))}${substr(each.key, 1, length(each.key) - 1)} service not running"
@@ -28,6 +28,7 @@ module "required_services" {
   notification_channel = var.notification_channel
 
   require_full_window = false
+  locked              = var.locked
 
   critical_threshold = lookup(each.value, "process_count", 1)
 }

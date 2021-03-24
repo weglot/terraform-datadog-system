@@ -1,15 +1,15 @@
 locals {
   dd_agent_data_filter_coalesced = coalesce(
-    var.dd_agent_data_filter_override,
-    var.filter_str
+  var.dd_agent_data_filter_override,
+  var.filter_str
   )
-  dd_agent_data_filter_splitted = split(",", local.dd_agent_data_filter_coalesced)
-  dd_agent_data_filter_newlist = [for tag in local.dd_agent_data_filter_splitted : "\"${tag}\""]
-  dd_agent_data_filter = join(",", local.dd_agent_data_filter_newlist)
+  dd_agent_data_filter_splitted  = split(",", local.dd_agent_data_filter_coalesced)
+  dd_agent_data_filter_newlist   = [for tag in local.dd_agent_data_filter_splitted : "\"${tag}\""]
+  dd_agent_data_filter           = join(",", local.dd_agent_data_filter_newlist)
 }
 
 module "dd_agent_data" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.3"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.4"
 
   type  = "service check"
   name  = "System - Datadog data missing"
@@ -31,8 +31,9 @@ module "dd_agent_data" {
   notification_channel = var.notification_channel
 
   require_full_window = false
-  no_data_timeframe = 2
-  notify_no_data    = true
+  no_data_timeframe   = 2
+  notify_no_data      = true
+  locked              = var.locked
 
   critical_threshold = 1
   warning_threshold  = 1

@@ -32,3 +32,8 @@ variable "name_suffix" {
   type    = string
   default = ""
 }
+
+variable "locked" {
+  type    = bool
+  default = true
+}

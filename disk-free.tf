@@ -1,12 +1,12 @@
 locals {
   disk_free_filter = coalesce(
-    var.disk_free_filter_override,
-    var.filter_str
+  var.disk_free_filter_override,
+  var.filter_str
   )
 }
 
 module "disk_free" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.3"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.4"
 
   name  = "System - Disk Free"
   query = "avg(${var.disk_free_evaluation_period}):( min:system.disk.free{${local.disk_free_filter}} by {host,device} / min:system.disk.total{${local.disk_free_filter}} by {host,device} ) * 100 < ${var.disk_free_critical}"
@@ -27,6 +27,7 @@ module "disk_free" {
   notification_channel = var.notification_channel
 
   require_full_window = true
+  locked              = var.locked
 
   critical_threshold = var.disk_free_critical
   warning_threshold  = var.disk_free_warning

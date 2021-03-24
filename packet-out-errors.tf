@@ -1,12 +1,12 @@
 locals {
   packets_out_errors_filter = coalesce(
-    var.packets_out_errors_filter_override,
-    var.filter_str
+  var.packets_out_errors_filter_override,
+  var.filter_str
   )
 }
 
 module "packets_out_errors" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.3"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.4"
 
   name  = "System - Packet Out Errors"
   query = "avg(${var.packets_out_errors_evaluation_period}):100 * max:system.net.packets_out.error{${local.packets_out_errors_filter}} by {host} / max:system.net.packets_out.count{${local.packets_out_errors_filter}} by {host} > ${var.packets_out_errors_critical}"
@@ -27,6 +27,7 @@ module "packets_out_errors" {
   notification_channel = var.notification_channel
 
   require_full_window = true
+  locked              = var.locked
 
   critical_threshold = var.packets_out_errors_critical
   warning_threshold  = var.packets_out_errors_warning

@@ -1,12 +1,12 @@
 locals {
   disk_io_wait_filter = coalesce(
-    var.disk_io_wait_filter_override,
-    var.filter_str
+  var.disk_io_wait_filter_override,
+  var.filter_str
   )
 }
 
 module "disk_io_wait" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.3"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.4"
 
   name  = "System - Disk IO Wait"
   query = "avg(${var.disk_io_wait_evaluation_period}):avg:system.cpu.iowait{${local.disk_io_wait_filter}} by {host} > ${var.disk_io_wait_critical}"
@@ -27,6 +27,7 @@ module "disk_io_wait" {
   notification_channel = var.notification_channel
 
   require_full_window = true
+  locked              = var.locked
 
   critical_threshold = var.disk_io_wait_critical
   warning_threshold  = var.disk_io_wait_warning

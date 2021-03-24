@@ -1,12 +1,12 @@
 locals {
   cpu_filter = coalesce(
-    var.cpu_filter_override,
-    var.filter_str
+  var.cpu_filter_override,
+  var.filter_str
   )
 }
 
 module "cpu" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.3"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.4"
 
   name  = "System - High CPU"
   query = "avg(${var.cpu_evaluation_period}):avg:system.cpu.user{${local.cpu_filter}} by {host} + avg:system.cpu.system{${local.cpu_filter}} by {host} > ${var.cpu_critical}"
@@ -27,6 +27,7 @@ module "cpu" {
   notification_channel = var.notification_channel
 
   require_full_window = true
+  locked              = var.locked
 
   critical_threshold = var.cpu_critical
   warning_threshold  = var.cpu_warning

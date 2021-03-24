@@ -6,13 +6,13 @@ locals {
 }
 
 module "memory_free_bytes" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.3"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.4"
 
   name  = "System - Memory Free Bytes"
   query = "avg(${var.memory_free_bytes_evaluation_period}):min:system.mem.free{${local.memory_free_bytes_filter}} by {host} < ${var.memory_free_bytes_critical}"
 
   enabled          = var.memory_free_bytes_enabled
-  alerting_enabled = var.memory_free_alerting_enabled
+  alerting_enabled = var.memory_free_bytes_alerting_enabled
 
   alert_message    = "Available memory on ${var.service} Node {{host.name}} has dropped below {{threshold}} and has {{value}} available"
   recovery_message = "Available memory on ${var.service} Node {{host.name}} has recovered {{value}}"
@@ -27,6 +27,7 @@ module "memory_free_bytes" {
   notification_channel = var.notification_channel
 
   require_full_window = true
+  locked = var.locked
 
   critical_threshold = var.memory_free_bytes_critical
   warning_threshold  = var.memory_free_bytes_warning

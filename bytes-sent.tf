@@ -1,12 +1,12 @@
 locals {
   bytes_sent_filter = coalesce(
-    var.bytes_sent_filter_override,
-    var.filter_str
+  var.bytes_sent_filter_override,
+  var.filter_str
   )
 }
 
 module "bytes_sent" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.3"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.4"
 
   name  = "System - Bytes sent"
   query = "avg(${var.bytes_sent_evaluation_period}):avg:system.net.bytes_sent{${local.bytes_sent_filter}} by {host} > ${var.bytes_sent_critical}"
@@ -27,6 +27,7 @@ module "bytes_sent" {
   notification_channel = var.notification_channel
 
   require_full_window = true
+  locked              = var.locked
 
   critical_threshold = var.bytes_sent_critical
   warning_threshold  = var.bytes_sent_warning
