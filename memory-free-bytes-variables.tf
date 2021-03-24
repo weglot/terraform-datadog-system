@@ -41,7 +41,7 @@ variable "memory_free_bytes_filter_override" {
   default = ""
 }
 
-variable "memory_free_alerting_enabled" {
+variable "memory_free_bytes_alerting_enabled" {
   type    = bool
   default = true
 }
