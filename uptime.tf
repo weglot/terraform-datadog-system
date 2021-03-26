@@ -1,7 +1,7 @@
 locals {
   reboot_filter = coalesce(
-  var.reboot_filter_override,
-  var.filter_str
+    var.reboot_filter_override,
+    var.filter_str
   )
 }
 
@@ -19,6 +19,7 @@ module "uptime" {
 
   service         = var.service
   env             = var.alert_env
+  priority        = var.reboot_priority
   severity        = var.reboot_severity
   note            = var.reboot_note
   docs            = var.reboot_docs

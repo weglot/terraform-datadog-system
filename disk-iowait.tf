@@ -1,7 +1,7 @@
 locals {
   disk_io_wait_filter = coalesce(
-  var.disk_io_wait_filter_override,
-  var.filter_str
+    var.disk_io_wait_filter_override,
+    var.filter_str
   )
 }
 
@@ -19,6 +19,7 @@ module "disk_io_wait" {
 
   service         = var.service
   env             = var.alert_env
+  priority        = var.disk_io_wait_priority
   severity        = var.disk_io_wait_severity
   note            = var.disk_io_wait_note
   docs            = var.disk_io_wait_docs

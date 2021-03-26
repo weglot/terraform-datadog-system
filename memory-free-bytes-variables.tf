@@ -1,6 +1,6 @@
 variable "memory_free_bytes_enabled" {
-  type    = bool
-  default = false
+  type        = bool
+  default     = false
   description = "Memory free based on absolute values. Disabled by default to use memory_free_percent"
 }
 
@@ -24,6 +24,11 @@ variable "memory_free_bytes_evaluation_period" {
 variable "memory_free_bytes_severity" {
   type    = string
   default = "critical"
+}
+
+variable "memory_free_bytes_priority" {
+  type    = number
+  default = null
 }
 
 variable "memory_free_bytes_note" {

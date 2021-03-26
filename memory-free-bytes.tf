@@ -19,6 +19,7 @@ module "memory_free_bytes" {
 
   service         = var.service
   env             = var.alert_env
+  priority        = var.memory_free_bytes_priority
   severity        = var.memory_free_bytes_severity
   note            = var.memory_free_bytes_note
   docs            = var.memory_free_bytes_docs
@@ -27,7 +28,7 @@ module "memory_free_bytes" {
   notification_channel = var.notification_channel
 
   require_full_window = true
-  locked = var.locked
+  locked              = var.locked
 
   critical_threshold = var.memory_free_bytes_critical
   warning_threshold  = var.memory_free_bytes_warning

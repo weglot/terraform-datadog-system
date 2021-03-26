@@ -11,7 +11,7 @@ variable "filter_str" {
 }
 
 variable "service" {
-  type    = string
+  type = string
 }
 
 variable "notification_channel" {

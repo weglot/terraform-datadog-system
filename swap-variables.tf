@@ -25,6 +25,11 @@ variable "swap_percent_free_severity" {
   default = "minor"
 }
 
+variable "swap_percent_free_priority" {
+  type    = number
+  default = null
+}
+
 variable "swap_percent_free_note" {
   type    = string
   default = ""

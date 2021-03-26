@@ -1,7 +1,7 @@
 locals {
   bytes_received_filter = coalesce(
-  var.bytes_received_filter_override,
-  var.filter_str
+    var.bytes_received_filter_override,
+    var.filter_str
   )
 }
 
@@ -19,6 +19,7 @@ module "bytes_received" {
 
   service         = var.service
   env             = var.alert_env
+  priority        = var.bytes_received_priority
   severity        = var.bytes_received_severity
   note            = var.bytes_received_note
   docs            = var.bytes_received_docs

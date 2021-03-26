@@ -1,7 +1,7 @@
 locals {
   required_services_filter = coalesce(
-  var.required_services_filter_override,
-  var.filter_str
+    var.required_services_filter_override,
+    var.filter_str
   )
 }
 
@@ -20,6 +20,7 @@ module "required_services" {
 
   service         = var.service
   env             = var.alert_env
+  priority        = var.required_services_default_priority
   severity        = var.required_services_default_severity
   note            = var.required_services_default_note
   docs            = var.required_services_default_docs

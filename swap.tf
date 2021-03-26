@@ -1,7 +1,7 @@
 locals {
   swap_percent_free_filter = coalesce(
-  var.swap_percent_free_filter_override,
-  var.filter_str
+    var.swap_percent_free_filter_override,
+    var.filter_str
   )
 }
 
@@ -19,6 +19,7 @@ module "swap_percent_free" {
 
   service         = var.service
   env             = var.alert_env
+  priority        = var.swap_percent_free_priority
   severity        = var.swap_percent_free_severity
   note            = var.swap_percent_free_note
   docs            = var.swap_percent_free_docs

@@ -1,7 +1,7 @@
 locals {
   memory_free_percent_filter = coalesce(
-  var.memory_free_percent_filter_override,
-  var.filter_str
+    var.memory_free_percent_filter_override,
+    var.filter_str
   )
 }
 
@@ -19,6 +19,7 @@ module "memory_free_percent" {
 
   service         = var.service
   env             = var.alert_env
+  priority        = var.memory_free_percent_priority
   severity        = var.memory_free_percent_severity
   note            = var.memory_free_percent_note
   docs            = var.memory_free_percent_docs

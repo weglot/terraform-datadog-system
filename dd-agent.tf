@@ -1,7 +1,7 @@
 locals {
   dd_agent_filter = coalesce(
-  var.dd_agent_filter_override,
-  var.filter_str
+    var.dd_agent_filter_override,
+    var.filter_str
   )
 }
 
@@ -19,6 +19,7 @@ module "dd_agent" {
 
   service         = var.service
   env             = var.alert_env
+  priority        = var.dd_agent_priority
   severity        = var.dd_agent_severity
   note            = var.dd_agent_note
   docs            = var.dd_agent_docs

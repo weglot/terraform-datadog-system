@@ -1,7 +1,7 @@
 locals {
   bytes_sent_filter = coalesce(
-  var.bytes_sent_filter_override,
-  var.filter_str
+    var.bytes_sent_filter_override,
+    var.filter_str
   )
 }
 
@@ -19,6 +19,7 @@ module "bytes_sent" {
 
   service         = var.service
   env             = var.alert_env
+  priority        = var.bytes_sent_priority
   severity        = var.bytes_sent_severity
   note            = var.bytes_sent_note
   docs            = var.bytes_sent_docs

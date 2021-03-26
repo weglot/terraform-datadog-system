@@ -1,7 +1,7 @@
 locals {
   disk_free_filter = coalesce(
-  var.disk_free_filter_override,
-  var.filter_str
+    var.disk_free_filter_override,
+    var.filter_str
   )
 }
 
@@ -19,6 +19,7 @@ module "disk_free" {
 
   service         = var.service
   env             = var.alert_env
+  priority        = var.disk_free_priority
   severity        = var.disk_free_severity
   note            = var.disk_free_note
   docs            = var.disk_free_docs
