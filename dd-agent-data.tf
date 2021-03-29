@@ -10,7 +10,7 @@ locals {
 }
 
 module "dd_agent_data" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.4"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.5"
 
   type  = "service check"
   name  = "System - Datadog data missing"
