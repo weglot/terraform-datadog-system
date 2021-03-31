@@ -1,12 +1,12 @@
 locals {
   memory_free_percent_filter = coalesce(
-  var.memory_free_percent_filter_override,
-  var.filter_str
+    var.memory_free_percent_filter_override,
+    var.filter_str
   )
 }
 
 module "memory_free_percent" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.4"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.5"
 
   name  = "System - Memory Free Percent"
   query = "avg(${var.memory_free_percent_evaluation_period}):( min:system.mem.free{${local.memory_free_percent_filter}} by {host} / avg:system.mem.total{${local.memory_free_percent_filter}} by {host} ) * 100 < ${var.memory_free_percent_critical}"
@@ -19,6 +19,7 @@ module "memory_free_percent" {
 
   service         = var.service
   env             = var.alert_env
+  priority        = var.memory_free_percent_priority
   severity        = var.memory_free_percent_severity
   note            = var.memory_free_percent_note
   docs            = var.memory_free_percent_docs

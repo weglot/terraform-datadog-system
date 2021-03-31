@@ -25,6 +25,11 @@ variable "bytes_sent_severity" {
   default = "minor"
 }
 
+variable "bytes_sent_priority" {
+  type    = number
+  default = null
+}
+
 variable "bytes_sent_note" {
   type    = string
   default = ""

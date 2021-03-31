@@ -1,5 +1,5 @@
 variable "required_services_config" {
-  type = map(map(string))
+  type    = map(map(string))
   default = {}
 }
 
@@ -11,6 +11,11 @@ variable "required_services_default_freshness_duration" {
 variable "required_services_default_severity" {
   type    = string
   default = "major"
+}
+
+variable "required_services_default_priority" {
+  type    = number
+  default = null
 }
 
 variable "required_services_default_note" {

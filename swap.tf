@@ -1,12 +1,12 @@
 locals {
   swap_percent_free_filter = coalesce(
-  var.swap_percent_free_filter_override,
-  var.filter_str
+    var.swap_percent_free_filter_override,
+    var.filter_str
   )
 }
 
 module "swap_percent_free" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.4"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.5"
 
   name  = "System - Swap percent free"
   query = "avg(${var.swap_percent_free_evaluation_period}):min:system.swap.pct_free{${local.swap_percent_free_filter}} by {host} * 100 < ${var.swap_percent_free_critical}"
@@ -19,6 +19,7 @@ module "swap_percent_free" {
 
   service         = var.service
   env             = var.alert_env
+  priority        = var.swap_percent_free_priority
   severity        = var.swap_percent_free_severity
   note            = var.swap_percent_free_note
   docs            = var.swap_percent_free_docs

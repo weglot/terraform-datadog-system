@@ -3,13 +3,13 @@
 
 locals {
   packets_in_errors_filter = coalesce(
-  var.packets_in_errors_filter_override,
-  var.filter_str
+    var.packets_in_errors_filter_override,
+    var.filter_str
   )
 }
 
 module "packets_in_errors" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.4"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.5"
 
   name  = "System - Packet In Errors"
   query = "avg(${var.packets_in_errors_evaluation_period}):100 * max:system.net.packets_in.error{${local.packets_in_errors_filter}} by {host} / max:system.net.packets_in.count{${local.packets_in_errors_filter}} by {host} > ${var.packets_in_errors_critical}"
@@ -22,6 +22,7 @@ module "packets_in_errors" {
 
   service         = var.service
   env             = var.alert_env
+  priority        = var.packets_in_errors_priority
   severity        = var.packets_in_errors_severity
   note            = var.packets_in_errors_note
   docs            = var.packets_in_errors_docs
