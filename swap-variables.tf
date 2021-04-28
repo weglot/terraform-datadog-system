@@ -45,12 +45,12 @@ variable "swap_percent_free_alerting_enabled" {
   default = true
 }
 
-variable "swap_percent_free_prefix" {
+variable "swap_percent_free_name_prefix" {
   type    = string
   default = ""
 }
 
-variable "swap_percent_free_suffix" {
+variable "swap_percent_free_name_suffix" {
   type    = string
   default = ""
 }

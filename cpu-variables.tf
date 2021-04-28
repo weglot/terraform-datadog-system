@@ -43,12 +43,12 @@ variable "cpu_alerting_enabled" {
   default = true
 }
 
-variable "cpu_prefix" {
+variable "cpu_name_prefix" {
   type    = string
   default = ""
 }
 
-variable "cpu_suffix" {
+variable "cpu_name_suffix" {
   type    = string
   default = ""
 }

@@ -45,12 +45,12 @@ variable "bytes_sent_alerting_enabled" {
   default = true
 }
 
-variable "bytes_sent_prefix" {
+variable "bytes_sent_name_prefix" {
   type    = string
   default = ""
 }
 
-variable "bytes_sent_suffix" {
+variable "bytes_sent_name_suffix" {
   type    = string
   default = ""
 }

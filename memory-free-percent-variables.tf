@@ -45,12 +45,12 @@ variable "memory_free_percent_alerting_enabled" {
   default = true
 }
 
-variable "memory_free_percent_prefix" {
+variable "memory_free_percent_name_prefix" {
   type    = string
   default = ""
 }
 
-variable "memory_free_percent_suffix" {
+variable "memory_free_percent_name_suffix" {
   type    = string
   default = ""
 }

@@ -46,12 +46,12 @@ variable "memory_free_bytes_alerting_enabled" {
   default = true
 }
 
-variable "memory_free_bytes_prefix" {
+variable "memory_free_bytes_name_prefix" {
   type    = string
   default = ""
 }
 
-variable "memory_free_bytes_suffix" {
+variable "memory_free_bytes_name_suffix" {
   type    = string
   default = ""
 }

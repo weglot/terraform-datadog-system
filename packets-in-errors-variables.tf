@@ -45,12 +45,12 @@ variable "packets_in_errors_alerting_enabled" {
   default = true
 }
 
-variable "packets_in_errors_prefix" {
+variable "packets_in_errors_name_prefix" {
   type    = string
   default = ""
 }
 
-variable "packets_in_errors_suffix" {
+variable "packets_in_errors_name_suffix" {
   type    = string
   default = ""
 }

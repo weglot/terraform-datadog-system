@@ -45,12 +45,12 @@ variable "disk_io_wait_alerting_enabled" {
   default = true
 }
 
-variable "disk_io_wait_prefix" {
+variable "disk_io_wait_name_prefix" {
   type    = string
   default = ""
 }
 
-variable "disk_io_wait_suffix" {
+variable "disk_io_wait_name_suffix" {
   type    = string
   default = ""
 }

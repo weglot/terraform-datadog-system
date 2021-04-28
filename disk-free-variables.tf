@@ -45,12 +45,12 @@ variable "disk_free_alerting_enabled" {
   default = true
 }
 
-variable "disk_free_prefix" {
+variable "disk_free_name_prefix" {
   type    = string
   default = ""
 }
 
-variable "disk_free_suffix" {
+variable "disk_free_name_suffix" {
   type    = string
   default = ""
 }

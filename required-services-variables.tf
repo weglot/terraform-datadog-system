@@ -33,12 +33,12 @@ variable "required_services_alerting_enabled" {
   default = true
 }
 
-variable "required_services_prefix" {
+variable "required_services_name_prefix" {
   type    = string
   default = ""
 }
 
-variable "required_services_suffix" {
+variable "required_services_name_suffix" {
   type    = string
   default = ""
 }

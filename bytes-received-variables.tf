@@ -45,12 +45,12 @@ variable "bytes_received_alerting_enabled" {
   default = true
 }
 
-variable "bytes_received_prefix" {
+variable "bytes_received_name_prefix" {
   type    = string
   default = ""
 }
 
-variable "bytes_received_suffix" {
+variable "bytes_received_name_suffix" {
   type    = string
   default = ""
 }

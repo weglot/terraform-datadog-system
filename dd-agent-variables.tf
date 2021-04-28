@@ -33,12 +33,12 @@ variable "dd_agent_data_alerting_enabled" {
   default = true
 }
 
-variable "dd_agent_data_prefix" {
+variable "dd_agent_data_name_prefix" {
   type    = string
   default = ""
 }
 
-variable "dd_agent_data_suffix" {
+variable "dd_agent_data_name_suffix" {
   type    = string
   default = ""
 }

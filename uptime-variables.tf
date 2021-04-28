@@ -28,12 +28,12 @@ variable "reboot_alerting_enabled" {
   default = true
 }
 
-variable "reboot_alerting_prefix" {
+variable "reboot_alerting_name_prefix" {
   type    = string
   default = ""
 }
 
-variable "reboot_alerting_suffix" {
+variable "reboot_alerting_name_suffix" {
   type    = string
   default = ""
 }
