@@ -9,9 +9,9 @@ module "disk_io_wait" {
   source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.6.0"
 
   name             = "System - Disk IO Wait"
-  query            = "avg(${var.disk_io_wait_evaluation_period}):avg:system.disk_io_wait.iowait{${local.disk_io_wait_filter}} by {host} > ${var.disk_io_wait_critical}"
-  alert_message    = "High IO waits for disk_io_wait on ${var.service} Node {{host.name}} ({{value}} %)"
-  recovery_message = "IO waits for disk_io_wait on ${var.service} Node {{host.name}} Recovered ({{value}} %) "
+  query            = "avg(${var.disk_io_wait_evaluation_period}):avg:system.cpu.iowait{${local.disk_io_wait_filter}} by {host} > ${var.disk_io_wait_critical}"
+  alert_message    = "High IO waits for CPU on ${var.service} Node {{host.name}} ({{value}} %)"
+  recovery_message = "IO waits for CPU on ${var.service} Node {{host.name}} Recovered ({{value}} %) "
 
   # module level vars
   env                  = var.alert_env
