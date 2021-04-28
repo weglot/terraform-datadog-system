@@ -28,10 +28,10 @@ module "required_services" {
   alerting_enabled = var.required_services_alerting_enabled
   # no warning
   critical_threshold = lookup(each.value, "process_count", 1)
-  priority           = var.required_services_priority
-  severity           = var.required_services_severity
-  docs               = var.required_services_docs
-  note               = var.required_services_note
+  priority           = var.required_services_default_priority
+  severity           = var.required_services_default_severity
+  note               = var.required_services_default_note
+  docs               = var.required_services_default_docs
   name_prefix        = var.required_services_name_prefix
   name_suffix        = var.required_services_name_suffix
 }

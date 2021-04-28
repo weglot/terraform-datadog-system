@@ -1,3 +1,8 @@
+variable "required_services_enabled" {
+  type    = bool
+  default = true
+}
+
 variable "required_services_config" {
   type    = map(map(string))
   default = {}
@@ -43,7 +48,7 @@ variable "required_services_name_suffix" {
   default = ""
 }
 
-variable "required_services_priority" {
+variable "required_services_default_priority" {
   description = "Number from 1 (high) to 5 (low)."
 
   type    = number
