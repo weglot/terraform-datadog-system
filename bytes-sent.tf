@@ -1,15 +1,15 @@
 locals {
   bytes_sent_filter = coalesce(
-  var.bytes_sent_filter_override,
-  var.filter_str
+    var.bytes_sent_filter_override,
+    var.filter_str
   )
 }
 
 module "bytes_sent" {
   source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.5.3"
 
-  name  = "System - Bytes sent"
-  query = "avg(${var.bytes_sent_evaluation_period}):avg:system.net.bytes_sent{${local.bytes_sent_filter}} by {host} > ${var.bytes_sent_critical}"
+  name             = "System - Bytes sent"
+  query            = "avg(${var.bytes_sent_evaluation_period}):avg:system.net.bytes_sent{${local.bytes_sent_filter}} by {host} > ${var.bytes_sent_critical}"
   alert_message    = "High egress traffic on ${var.service} Node {{host.name}} ({{value}})"
   recovery_message = "High egress traffic on ${var.service} Node {{host.name}} Recovered ({{value}})"
 

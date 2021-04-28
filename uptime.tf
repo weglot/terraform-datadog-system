@@ -1,17 +1,17 @@
 locals {
   reboot_filter = coalesce(
-  var.reboot_filter_override,
-  var.filter_str
+    var.reboot_filter_override,
+    var.filter_str
   )
 }
 
 module "uptime" {
   source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.5.3"
 
-  name  = "Sytem - Reboot detected"
-  query = "min(last_5m):derivative(max:system.uptime{${local.reboot_filter}} by {host}) < 0"
-  alert_message    = "Reboot detected on ${var.service} Node {{host.name}}"
-  recovery_message = ""
+  name                = "Sytem - Reboot detected"
+  query               = "min(last_5m):derivative(max:system.uptime{${local.reboot_filter}} by {host}) < 0"
+  alert_message       = "Reboot detected on ${var.service} Node {{host.name}}"
+  recovery_message    = ""
   require_full_window = false
 
   # module level vars
@@ -22,8 +22,8 @@ module "uptime" {
   locked               = var.locked
 
   # monitor level vars
-  enabled            = var.cpu_enabled
-  alerting_enabled   = var.cpu_alerting_enabled
+  enabled          = var.cpu_enabled
+  alerting_enabled = var.cpu_alerting_enabled
   # no warning
   critical_threshold = 0
   priority           = var.cpu_priority

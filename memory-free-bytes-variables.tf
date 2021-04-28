@@ -1,6 +1,6 @@
 variable "memory_free_bytes_enabled" {
-  type    = bool
-  default = false
+  type        = bool
+  default     = false
   description = "Memory free based on absolute values. Disabled by default to use memory_free_percent"
 }
 

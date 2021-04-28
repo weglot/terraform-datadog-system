@@ -1,15 +1,15 @@
 locals {
   disk_io_wait_filter = coalesce(
-  var.disk_io_wait_filter_override,
-  var.filter_str
+    var.disk_io_wait_filter_override,
+    var.filter_str
   )
 }
 
 module "disk_io_wait" {
   source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.5.3"
 
-  name  = "System - Disk IO Wait"
-  query = "avg(${var.disk_io_wait_evaluation_period}):avg:system.disk_io_wait.iowait{${local.disk_io_wait_filter}} by {host} > ${var.disk_io_wait_critical}"
+  name             = "System - Disk IO Wait"
+  query            = "avg(${var.disk_io_wait_evaluation_period}):avg:system.disk_io_wait.iowait{${local.disk_io_wait_filter}} by {host} > ${var.disk_io_wait_critical}"
   alert_message    = "High IO waits for disk_io_wait on ${var.service} Node {{host.name}} ({{value}} %)"
   recovery_message = "IO waits for disk_io_wait on ${var.service} Node {{host.name}} Recovered ({{value}} %) "
 
