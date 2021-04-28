@@ -5,7 +5,7 @@ locals {
   )
 }
 
-module "uptime" {
+module "reboot" {
   source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.6.0"
 
   name                = "Sytem - Reboot detected"
@@ -22,14 +22,14 @@ module "uptime" {
   locked               = var.locked
 
   # monitor level vars
-  enabled          = var.cpu_enabled
-  alerting_enabled = var.cpu_alerting_enabled
+  enabled          = var.reboot_enabled
+  alerting_enabled = var.reboot_alerting_enabled
   # no warning
   critical_threshold = 0
-  priority           = var.cpu_priority
-  severity           = var.cpu_severity
-  docs               = var.cpu_docs
-  note               = var.cpu_note
-  name_prefix        = var.cpu_name_prefix
-  name_suffix        = var.cpu_name_suffix
+  priority           = var.reboot_priority
+  severity           = var.reboot_severity
+  docs               = var.reboot_docs
+  note               = var.reboot_note
+  name_prefix        = var.reboot_name_prefix
+  name_suffix        = var.reboot_name_suffix
 }

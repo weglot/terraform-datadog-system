@@ -28,17 +28,17 @@ variable "reboot_alerting_enabled" {
   default = true
 }
 
-variable "reboot_alerting_name_prefix" {
+variable "reboot_name_prefix" {
   type    = string
   default = ""
 }
 
-variable "reboot_alerting_name_suffix" {
+variable "reboot_name_suffix" {
   type    = string
   default = ""
 }
 
-variable "reboot_alerting_priority" {
+variable "reboot_priority" {
   description = "Number from 1 (high) to 5 (low)."
 
   type    = number
