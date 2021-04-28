@@ -9,7 +9,7 @@ locals {
 }
 
 module "packets_in_errors" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.5.4"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.6.0"
 
   name             = "System - Packet In Errors"
   query            = "avg(${var.packets_in_errors_evaluation_period}):100 * max:system.net.packets_in.error{${local.packets_in_errors_filter}} by {host} / max:system.net.packets_in.count{${local.packets_in_errors_filter}} by {host} > ${var.packets_in_errors_critical}"

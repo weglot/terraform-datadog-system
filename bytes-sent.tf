@@ -6,7 +6,7 @@ locals {
 }
 
 module "bytes_sent" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.5.4"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.6.0"
 
   name             = "System - Bytes sent"
   query            = "avg(${var.bytes_sent_evaluation_period}):avg:system.net.bytes_sent{${local.bytes_sent_filter}} by {host} > ${var.bytes_sent_critical}"

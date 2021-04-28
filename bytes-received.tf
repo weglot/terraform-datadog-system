@@ -6,7 +6,7 @@ locals {
 }
 
 module "bytes_received" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.5.4"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.6.0"
 
   name             = "System - Bytes received"
   query            = "avg(${var.bytes_received_evaluation_period}):avg:system.net.bytes_rcvd{${local.bytes_received_filter}} by {host} > ${var.bytes_received_critical}"
