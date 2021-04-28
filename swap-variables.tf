@@ -5,8 +5,8 @@ variable "swap_percent_free_enabled" {
 
 variable "swap_percent_free_warning" {
   type    = number
-  default = 20
-  # 20 %
+  default = 15
+  # 15 %
 }
 
 variable "swap_percent_free_critical" {
