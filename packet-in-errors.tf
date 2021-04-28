@@ -9,29 +9,29 @@ locals {
 }
 
 module "packets_in_errors" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.4"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.5.3"
 
   name  = "System - Packet In Errors"
   query = "avg(${var.packets_in_errors_evaluation_period}):100 * max:system.net.packets_in.error{${local.packets_in_errors_filter}} by {host} / max:system.net.packets_in.count{${local.packets_in_errors_filter}} by {host} > ${var.packets_in_errors_critical}"
-
-  enabled          = var.packets_in_errors_enabled
-  alerting_enabled = var.packets_in_errors_alerting_enabled
-
   alert_message    = "High rate of packet-in errors on ${var.service} Node {{host.name}} ({{value}} %)"
   recovery_message = "Packet-in error rate on ${var.service} Node {{host.name}} Recovered ({{value}} %)"
 
-  service         = var.service
-  env             = var.alert_env
-  severity        = var.packets_in_errors_severity
-  note            = var.packets_in_errors_note
-  docs            = var.packets_in_errors_docs
-  additional_tags = var.additional_tags
-
+  # module level vars
+  env                  = var.alert_env
+  service              = var.service
   notification_channel = var.notification_channel
+  additional_tags      = var.additional_tags
+  locked               = var.locked
 
-  require_full_window = true
-  locked              = var.locked
-
-  critical_threshold = var.packets_in_errors_critical
+  # monitor level vars
+  enabled            = var.packets_in_errors_enabled
+  alerting_enabled   = var.packets_in_errors_alerting_enabled
   warning_threshold  = var.packets_in_errors_warning
+  critical_threshold = var.packets_in_errors_critical
+  priority           = var.packets_in_errors_priority
+  severity           = var.packets_in_errors_severity
+  docs               = var.packets_in_errors_docs
+  note               = var.packets_in_errors_note
+  name_prefix        = var.packets_in_errors_name_prefix
+  name_suffix        = var.packets_in_errors_name_suffix
 }

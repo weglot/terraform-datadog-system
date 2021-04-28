@@ -44,3 +44,20 @@ variable "disk_free_alerting_enabled" {
   type    = bool
   default = true
 }
+
+variable "disk_free_prefix" {
+  type    = string
+  default = ""
+}
+
+variable "disk_free_suffix" {
+  type    = string
+  default = ""
+}
+
+variable "disk_free_priority" {
+  description = "Number from 1 (high) to 5 (low)."
+
+  type    = number
+  default = null
+}

@@ -44,3 +44,20 @@ variable "bytes_received_alerting_enabled" {
   type    = bool
   default = true
 }
+
+variable "bytes_received_prefix" {
+  type    = string
+  default = ""
+}
+
+variable "bytes_received_suffix" {
+  type    = string
+  default = ""
+}
+
+variable "bytes_received_priority" {
+  description = "Number from 1 (high) to 5 (low)."
+
+  type    = number
+  default = null
+}

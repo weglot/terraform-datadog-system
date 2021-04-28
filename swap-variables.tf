@@ -44,3 +44,20 @@ variable "swap_percent_free_alerting_enabled" {
   type    = bool
   default = true
 }
+
+variable "swap_percent_free_prefix" {
+  type    = string
+  default = ""
+}
+
+variable "swap_percent_free_suffix" {
+  type    = string
+  default = ""
+}
+
+variable "swap_percent_free_priority" {
+  description = "Number from 1 (high) to 5 (low)."
+
+  type    = number
+  default = null
+}

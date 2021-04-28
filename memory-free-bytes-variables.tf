@@ -45,3 +45,20 @@ variable "memory_free_bytes_alerting_enabled" {
   type    = bool
   default = true
 }
+
+variable "memory_free_bytes_prefix" {
+  type    = string
+  default = ""
+}
+
+variable "memory_free_bytes_suffix" {
+  type    = string
+  default = ""
+}
+
+variable "memory_free_bytes_priority" {
+  description = "Number from 1 (high) to 5 (low)."
+
+  type    = number
+  default = null
+}

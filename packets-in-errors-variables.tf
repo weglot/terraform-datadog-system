@@ -44,3 +44,20 @@ variable "packets_in_errors_alerting_enabled" {
   type    = bool
   default = true
 }
+
+variable "packets_in_errors_prefix" {
+  type    = string
+  default = ""
+}
+
+variable "packets_in_errors_suffix" {
+  type    = string
+  default = ""
+}
+
+variable "packets_in_errors_priority" {
+  description = "Number from 1 (high) to 5 (low)."
+
+  type    = number
+  default = null
+}
