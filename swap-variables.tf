@@ -5,8 +5,8 @@ variable "swap_percent_free_enabled" {
 
 variable "swap_percent_free_warning" {
   type    = number
-  default = 20
-  # 20 %
+  default = 15
+  # 15 %
 }
 
 variable "swap_percent_free_critical" {
@@ -48,4 +48,21 @@ variable "swap_percent_free_filter_override" {
 variable "swap_percent_free_alerting_enabled" {
   type    = bool
   default = true
+}
+
+variable "swap_percent_free_name_prefix" {
+  type    = string
+  default = ""
+}
+
+variable "swap_percent_free_name_suffix" {
+  type    = string
+  default = ""
+}
+
+variable "swap_percent_free_priority" {
+  description = "Number from 1 (high) to 5 (low)."
+
+  type    = number
+  default = null
 }

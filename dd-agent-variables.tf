@@ -37,3 +37,20 @@ variable "dd_agent_data_alerting_enabled" {
   type    = bool
   default = true
 }
+
+variable "dd_agent_data_name_prefix" {
+  type    = string
+  default = ""
+}
+
+variable "dd_agent_data_name_suffix" {
+  type    = string
+  default = ""
+}
+
+variable "dd_agent_data_priority" {
+  description = "Number from 1 (high) to 5 (low)."
+
+  type    = number
+  default = null
+}

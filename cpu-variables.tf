@@ -47,3 +47,20 @@ variable "cpu_alerting_enabled" {
   type    = bool
   default = true
 }
+
+variable "cpu_name_prefix" {
+  type    = string
+  default = ""
+}
+
+variable "cpu_name_suffix" {
+  type    = string
+  default = ""
+}
+
+variable "cpu_priority" {
+  description = "Number from 1 (high) to 5 (low)."
+
+  type    = number
+  default = null
+}

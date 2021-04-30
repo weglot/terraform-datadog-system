@@ -49,3 +49,20 @@ variable "packets_out_errors_alerting_enabled" {
   type    = bool
   default = true
 }
+
+variable "packets_out_errors_name_prefix" {
+  type    = string
+  default = ""
+}
+
+variable "packets_out_errors_name_suffix" {
+  type    = string
+  default = ""
+}
+
+variable "packets_out_errors_priority" {
+  description = "Number from 1 (high) to 5 (low)."
+
+  type    = number
+  default = null
+}

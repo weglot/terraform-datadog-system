@@ -49,3 +49,20 @@ variable "memory_free_percent_alerting_enabled" {
   type    = bool
   default = true
 }
+
+variable "memory_free_percent_name_prefix" {
+  type    = string
+  default = ""
+}
+
+variable "memory_free_percent_name_suffix" {
+  type    = string
+  default = ""
+}
+
+variable "memory_free_percent_priority" {
+  description = "Number from 1 (high) to 5 (low)."
+
+  type    = number
+  default = null
+}
