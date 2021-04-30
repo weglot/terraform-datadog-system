@@ -25,6 +25,11 @@ variable "packets_out_errors_severity" {
   default = "minor"
 }
 
+variable "packets_out_errors_priority" {
+  type    = number
+  default = null
+}
+
 variable "packets_out_errors_note" {
   type    = string
   default = ""

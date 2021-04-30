@@ -25,6 +25,11 @@ variable "disk_free_severity" {
   default = "critical"
 }
 
+variable "disk_free_priority" {
+  type    = number
+  default = null
+}
+
 variable "disk_free_note" {
   type    = string
   default = ""

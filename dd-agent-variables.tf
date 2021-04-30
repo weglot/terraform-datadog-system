@@ -13,6 +13,11 @@ variable "dd_agent_severity" {
   default = "major"
 }
 
+variable "dd_agent_priority" {
+  type    = number
+  default = null
+}
+
 variable "dd_agent_note" {
   type    = string
   default = ""

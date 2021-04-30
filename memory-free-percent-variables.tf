@@ -25,6 +25,11 @@ variable "memory_free_percent_severity" {
   default = "critical"
 }
 
+variable "memory_free_percent_priority" {
+  type    = number
+  default = null
+}
+
 variable "memory_free_percent_note" {
   type    = string
   default = ""
