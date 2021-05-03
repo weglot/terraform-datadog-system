@@ -25,11 +25,6 @@ variable "packets_in_errors_severity" {
   default = "minor"
 }
 
-variable "packets_in_errors_priority" {
-  type    = number
-  default = null
-}
-
 variable "packets_in_errors_note" {
   type    = string
   default = ""

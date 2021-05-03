@@ -9,7 +9,8 @@ module "packets_out_errors" {
   source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.6.0"
 
   name             = "System - Packet Out Errors"
-  query            = "avg(${var.packets_out_errors_evaluation_period}):100 * max:system.net.packets_out.error{${local.packets_out_errors_filter}} by {host} / max:system.net.packets_out.count{${local.packets_out_errors_filter}} by {host} > ${var.packets_out_errors_critical}"
+  # +1000 helps out filtering low packet rates, this prevents a handful of packet errors to skew the percentage when for example only 100 packets are received/sent
+  query            = "avg(${var.packets_out_errors_evaluation_period}):100 * max:system.net.packets_out.error{${local.packets_out_errors_filter}} by {host} / ( max:system.net.packets_out.count{${local.packets_out_errors_filter}} by {host} + 1000 ) > ${var.packets_out_errors_critical}"
   alert_message    = "High rate of packet-out errors on ${var.service} Node {{host.name}} ({{value}} %)"
   recovery_message = "Packet-out error rate on ${var.service} Node {{host.name}} Recovered ({{value}} %)"
 
