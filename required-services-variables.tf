@@ -18,11 +18,6 @@ variable "required_services_default_severity" {
   default = "major"
 }
 
-variable "required_services_default_priority" {
-  type    = number
-  default = null
-}
-
 variable "required_services_default_note" {
   type    = string
   default = ""

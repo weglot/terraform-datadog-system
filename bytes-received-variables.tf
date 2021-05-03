@@ -25,11 +25,6 @@ variable "bytes_received_severity" {
   default = "minor"
 }
 
-variable "bytes_received_priority" {
-  type    = number
-  default = null
-}
-
 variable "bytes_received_note" {
   type    = string
   default = ""

@@ -23,11 +23,6 @@ variable "cpu_severity" {
   default = "major"
 }
 
-variable "cpu_priority" {
-  type    = number
-  default = null
-}
-
 variable "cpu_note" {
   type    = string
   default = ""

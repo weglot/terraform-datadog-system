@@ -1,4 +1,4 @@
-# system.net.packets_in.error
+  # system.net.packets_in.error
 # https://netcraftsmen.com/understanding-interface-errors-and-tcp-performance/
 
 locals {
@@ -12,7 +12,8 @@ module "packets_in_errors" {
   source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.6.0"
 
   name             = "System - Packet In Errors"
-  query            = "avg(${var.packets_in_errors_evaluation_period}):100 * max:system.net.packets_in.error{${local.packets_in_errors_filter}} by {host} / max:system.net.packets_in.count{${local.packets_in_errors_filter}} by {host} > ${var.packets_in_errors_critical}"
+  # +1000 helps out filtering low packet rates, this prevents a handful of packet errors to skew the percentage when for example only 100 packets are received/sent
+  query            = "avg(${var.packets_in_errors_evaluation_period}):100 * max:system.net.packets_in.error{${local.packets_in_errors_filter}} by {host} / ( max:system.net.packets_in.count{${local.packets_in_errors_filter}} by {host} + 1000 ) > ${var.packets_in_errors_critical}"
   alert_message    = "High rate of packet-in errors on ${var.service} Node {{host.name}} ({{value}} %)"
   recovery_message = "Packet-in error rate on ${var.service} Node {{host.name}} Recovered ({{value}} %)"
 
