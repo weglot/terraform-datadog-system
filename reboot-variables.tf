@@ -8,11 +8,6 @@ variable "reboot_severity" {
   default = "critical"
 }
 
-variable "reboot_priority" {
-  type    = number
-  default = null
-}
-
 variable "reboot_note" {
   type    = string
   default = ""

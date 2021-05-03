@@ -25,11 +25,6 @@ variable "disk_io_wait_severity" {
   default = "critical"
 }
 
-variable "disk_io_wait_priority" {
-  type    = number
-  default = null
-}
-
 variable "disk_io_wait_note" {
   type    = string
   default = ""
