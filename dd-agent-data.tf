@@ -3,9 +3,21 @@ locals {
     var.dd_agent_data_filter_override,
     var.filter_str
   )
-  dd_agent_data_filter_splitted = split(",", local.dd_agent_data_filter_coalesced)
-  dd_agent_data_filter_newlist  = [for tag in local.dd_agent_data_filter_splitted : "\"${tag}\""]
-  dd_agent_data_filter          = join(",", local.dd_agent_data_filter_newlist)
+
+  dd_agent_data_filter = split(",", local.dd_agent_data_filter_coalesced)
+
+  dd_agent_data_over    = join(",", [for tag in local.dd_agent_data_filter : "\"${tag}\"" if length(regexall("^!", tag)) == 0])
+  dd_agent_data_exclude = join(",", [for tag in local.dd_agent_data_filter : "\"${trimprefix(tag, "!")}\"" if length(regexall("^!", tag)) > 0])
+
+  dd_agent_data_over_modifier    = length(local.dd_agent_data_over) > 0 ? ".over(${local.dd_agent_data_over})" : ""
+  dd_agent_data_exclude_modifier = length(local.dd_agent_data_exclude) > 0 ? ".exclude(${local.dd_agent_data_exclude})" : ""
+
+  dd_agent_data_modifiers = compact([
+    local.dd_agent_data_over_modifier,
+    local.dd_agent_data_exclude_modifier,
+    ".by(\"host\")",
+    ".last(${var.dd_agent_data_freshness_minutes})"
+  ])
 }
 
 module "dd_agent_data" {
@@ -13,7 +25,7 @@ module "dd_agent_data" {
 
   type                = "service check"
   name                = "System - Datadog data missing"
-  query               = "\"datadog.agent.up\".over(${local.dd_agent_data_filter}).by(\"host\").last(${var.dd_agent_data_freshness_minutes}).count_by_status()"
+  query               = "\"datadog.agent.up\"${join("", local.dd_agent_data_modifiers)}.count_by_status()"
   alert_message       = "Datadog Agent not running is not running on ${var.service} Node {{host.name}} please check."
   recovery_message    = "Datadog Agent is back on ${var.service} Node {{host.name}}"
   require_full_window = false
