@@ -1,33 +1,25 @@
-locals {
-  dd_agent_data_filter_coalesced = coalesce(
-    var.dd_agent_data_filter_override,
-    var.filter_str
+module "dd_agent_data" {
+  source = "git@github.com:kabisa/terraform-datadog-service-check-monitor.git?ref=0.1.0"
+
+  name       = "System - Datadog data missing"
+  check_name = "datadog.agent.up"
+  by_tags    = ["host"]
+
+  include_tags = coalesce(
+    var.dd_agent_data_include_tags_override,
+    var.service_check_include_tags,
+    []
   )
 
-  dd_agent_data_filter = split(",", local.dd_agent_data_filter_coalesced)
+  exclude_tags = coalesce(
+    var.dd_agent_data_exclude_tags_override,
+    var.service_check_exclude_tags,
+    []
+  )
 
-  dd_agent_data_over    = join(",", [for tag in local.dd_agent_data_filter : "\"${tag}\"" if length(regexall("^!", tag)) == 0])
-  dd_agent_data_exclude = join(",", [for tag in local.dd_agent_data_filter : "\"${trimprefix(tag, "!")}\"" if length(regexall("^!", tag)) > 0])
+  alert_message    = "Datadog Agent not running is not running on ${var.service} Node {{host.name}} please check."
+  recovery_message = "Datadog Agent is back on ${var.service} Node {{host.name}}"
 
-  dd_agent_data_over_modifier    = length(local.dd_agent_data_over) > 0 ? ".over(${local.dd_agent_data_over})" : ""
-  dd_agent_data_exclude_modifier = length(local.dd_agent_data_exclude) > 0 ? ".exclude(${local.dd_agent_data_exclude})" : ""
-
-  dd_agent_data_modifiers = compact([
-    local.dd_agent_data_over_modifier,
-    local.dd_agent_data_exclude_modifier,
-    ".by(\"host\")",
-    ".last(${var.dd_agent_data_freshness_minutes})"
-  ])
-}
-
-module "dd_agent_data" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.6.0"
-
-  type                = "service check"
-  name                = "System - Datadog data missing"
-  query               = "\"datadog.agent.up\"${join("", local.dd_agent_data_modifiers)}.count_by_status()"
-  alert_message       = "Datadog Agent not running is not running on ${var.service} Node {{host.name}} please check."
-  recovery_message    = "Datadog Agent is back on ${var.service} Node {{host.name}}"
   require_full_window = false
   no_data_timeframe   = 2
   notify_no_data      = true
