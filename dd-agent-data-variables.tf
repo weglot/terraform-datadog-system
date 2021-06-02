@@ -3,11 +3,6 @@ variable "dd_agent_data_enabled" {
   default = true
 }
 
-variable "dd_agent_data_freshness_minutes" {
-  type    = number
-  default = 15
-}
-
 variable "dd_agent_data_severity" {
   type    = string
   default = "major"
@@ -26,6 +21,16 @@ variable "dd_agent_data_docs" {
 variable "dd_agent_data_filter_override" {
   type    = string
   default = ""
+}
+
+variable "dd_agent_data_include_tags_override" {
+  type    = list(string)
+  default = null
+}
+
+variable "dd_agent_data_exclude_tags_override" {
+  type    = list(string)
+  default = null
 }
 
 variable "dd_agent_alerting_enabled" {
