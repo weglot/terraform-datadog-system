@@ -23,7 +23,7 @@ variable "dd_agent_filter_override" {
   default = ""
 }
 
-variable "dd_agent_data_alerting_enabled" {
+variable "dd_agent_alerting_enabled" {
   type    = bool
   default = true
 }

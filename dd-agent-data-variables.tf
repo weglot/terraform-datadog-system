@@ -3,9 +3,9 @@ variable "dd_agent_data_enabled" {
   default = true
 }
 
-variable "dd_agent_data_freshness_minutes" {
-  type    = number
-  default = 15
+variable "dd_agent_data_severity" {
+  type    = string
+  default = "major"
 }
 
 variable "dd_agent_data_note" {
@@ -23,7 +23,17 @@ variable "dd_agent_data_filter_override" {
   default = ""
 }
 
-variable "dd_agent_alerting_enabled" {
+variable "dd_agent_data_include_tags_override" {
+  type    = list(string)
+  default = null
+}
+
+variable "dd_agent_data_exclude_tags_override" {
+  type    = list(string)
+  default = null
+}
+
+variable "dd_agent_data_alerting_enabled" {
   type    = bool
   default = true
 }
@@ -32,5 +42,5 @@ variable "dd_agent_priority" {
   description = "Number from 1 (high) to 5 (low)."
 
   type    = number
-  default = 2
+  default = null
 }
