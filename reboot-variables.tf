@@ -3,11 +3,6 @@ variable "reboot_enabled" {
   default = true
 }
 
-variable "reboot_severity" {
-  type    = string
-  default = "critical"
-}
-
 variable "reboot_note" {
   type    = string
   default = ""
@@ -28,19 +23,9 @@ variable "reboot_alerting_enabled" {
   default = true
 }
 
-variable "reboot_name_prefix" {
-  type    = string
-  default = ""
-}
-
-variable "reboot_name_suffix" {
-  type    = string
-  default = ""
-}
-
 variable "reboot_priority" {
   description = "Number from 1 (high) to 5 (low)."
 
   type    = number
-  default = null
+  default = 3
 }

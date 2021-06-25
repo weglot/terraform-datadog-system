@@ -20,11 +20,6 @@ variable "swap_percent_free_evaluation_period" {
   default = "last_5m"
 }
 
-variable "swap_percent_free_severity" {
-  type    = string
-  default = "minor"
-}
-
 variable "swap_percent_free_note" {
   type    = string
   default = ""
@@ -45,19 +40,9 @@ variable "swap_percent_free_alerting_enabled" {
   default = true
 }
 
-variable "swap_percent_free_name_prefix" {
-  type    = string
-  default = ""
-}
-
-variable "swap_percent_free_name_suffix" {
-  type    = string
-  default = ""
-}
-
 variable "swap_percent_free_priority" {
   description = "Number from 1 (high) to 5 (low)."
 
   type    = number
-  default = null
+  default = 3
 }

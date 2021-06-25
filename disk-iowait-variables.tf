@@ -20,11 +20,6 @@ variable "disk_io_wait_evaluation_period" {
   default = "last_30m"
 }
 
-variable "disk_io_wait_severity" {
-  type    = string
-  default = "critical"
-}
-
 variable "disk_io_wait_note" {
   type    = string
   default = ""
@@ -45,19 +40,9 @@ variable "disk_io_wait_alerting_enabled" {
   default = true
 }
 
-variable "disk_io_wait_name_prefix" {
-  type    = string
-  default = ""
-}
-
-variable "disk_io_wait_name_suffix" {
-  type    = string
-  default = ""
-}
-
 variable "disk_io_wait_priority" {
   description = "Number from 1 (high) to 5 (low)."
 
   type    = number
-  default = null
+  default = 2
 }
