@@ -8,11 +8,6 @@ variable "dd_agent_evaluation_period" {
   default = "last_15m"
 }
 
-variable "dd_agent_severity" {
-  type    = string
-  default = "major"
-}
-
 variable "dd_agent_note" {
   type    = string
   default = ""
@@ -28,24 +23,14 @@ variable "dd_agent_filter_override" {
   default = ""
 }
 
-variable "dd_agent_data_alerting_enabled" {
+variable "dd_agent_alerting_enabled" {
   type    = bool
   default = true
-}
-
-variable "dd_agent_data_name_prefix" {
-  type    = string
-  default = ""
-}
-
-variable "dd_agent_data_name_suffix" {
-  type    = string
-  default = ""
 }
 
 variable "dd_agent_data_priority" {
   description = "Number from 1 (high) to 5 (low)."
 
   type    = number
-  default = null
+  default = 2
 }

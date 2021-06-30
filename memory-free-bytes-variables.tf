@@ -21,11 +21,6 @@ variable "memory_free_bytes_evaluation_period" {
   default = "last_5m"
 }
 
-variable "memory_free_bytes_severity" {
-  type    = string
-  default = "critical"
-}
-
 variable "memory_free_bytes_note" {
   type    = string
   default = ""
@@ -46,19 +41,9 @@ variable "memory_free_bytes_alerting_enabled" {
   default = true
 }
 
-variable "memory_free_bytes_name_prefix" {
-  type    = string
-  default = ""
-}
-
-variable "memory_free_bytes_name_suffix" {
-  type    = string
-  default = ""
-}
-
 variable "memory_free_bytes_priority" {
   description = "Number from 1 (high) to 5 (low)."
 
   type    = number
-  default = null
+  default = 2
 }

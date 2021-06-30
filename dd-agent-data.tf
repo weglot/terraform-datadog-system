@@ -1,5 +1,5 @@
 module "dd_agent_data" {
-  source = "git@github.com:kabisa/terraform-datadog-service-check-monitor.git?ref=0.1.0"
+  source = "git@github.com:kabisa/terraform-datadog-service-check-monitor.git?ref=1.2.0.rc1"
 
   name       = "System - Datadog data missing"
   check_name = "datadog.agent.up"
@@ -24,13 +24,6 @@ module "dd_agent_data" {
   no_data_timeframe   = 2
   notify_no_data      = true
 
-  # module level vars
-  env                  = var.alert_env
-  service              = var.service
-  notification_channel = var.notification_channel
-  additional_tags      = var.additional_tags
-  locked               = var.locked
-
   # monitor level vars
   enabled            = var.dd_agent_data_enabled
   alerting_enabled   = var.dd_agent_data_alerting_enabled
@@ -38,9 +31,15 @@ module "dd_agent_data" {
   warning_threshold  = 1
   ok_threshold       = 1
   priority           = var.dd_agent_data_priority
-  severity           = var.dd_agent_data_severity
   docs               = var.dd_agent_data_docs
   note               = var.dd_agent_data_note
-  name_prefix        = var.dd_agent_data_name_prefix
-  name_suffix        = var.dd_agent_data_name_suffix
+
+  # module level vars
+  env                  = var.alert_env
+  service              = var.service
+  notification_channel = var.notification_channel
+  additional_tags      = var.additional_tags
+  locked               = var.locked
+  name_prefix        = var.name_prefix
+  name_suffix        = var.name_suffix
 }

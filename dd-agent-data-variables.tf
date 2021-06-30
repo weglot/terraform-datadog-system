@@ -33,19 +33,9 @@ variable "dd_agent_data_exclude_tags_override" {
   default = null
 }
 
-variable "dd_agent_alerting_enabled" {
+variable "dd_agent_data_alerting_enabled" {
   type    = bool
   default = true
-}
-
-variable "dd_agent_name_prefix" {
-  type    = string
-  default = ""
-}
-
-variable "dd_agent_name_suffix" {
-  type    = string
-  default = ""
 }
 
 variable "dd_agent_priority" {

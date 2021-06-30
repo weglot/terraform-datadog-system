@@ -18,11 +18,6 @@ variable "cpu_evaluation_period" {
   default = "last_30m"
 }
 
-variable "cpu_severity" {
-  type    = string
-  default = "major"
-}
-
 variable "cpu_note" {
   type    = string
   default = ""
@@ -43,19 +38,9 @@ variable "cpu_alerting_enabled" {
   default = true
 }
 
-variable "cpu_name_prefix" {
-  type    = string
-  default = ""
-}
-
-variable "cpu_name_suffix" {
-  type    = string
-  default = ""
-}
-
 variable "cpu_priority" {
   description = "Number from 1 (high) to 5 (low)."
 
   type    = number
-  default = null
+  default = 2
 }

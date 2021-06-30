@@ -20,11 +20,6 @@ variable "packets_in_errors_evaluation_period" {
   default = "last_15m"
 }
 
-variable "packets_in_errors_severity" {
-  type    = string
-  default = "minor"
-}
-
 variable "packets_in_errors_note" {
   type    = string
   default = ""
@@ -45,19 +40,9 @@ variable "packets_in_errors_alerting_enabled" {
   default = true
 }
 
-variable "packets_in_errors_name_prefix" {
-  type    = string
-  default = ""
-}
-
-variable "packets_in_errors_name_suffix" {
-  type    = string
-  default = ""
-}
-
 variable "packets_in_errors_priority" {
   description = "Number from 1 (high) to 5 (low)."
 
   type    = number
-  default = null
+  default = 3
 }
