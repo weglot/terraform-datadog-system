@@ -6,7 +6,7 @@ locals {
 }
 
 module "packets_out_errors" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.6.2.rc1"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.6.2"
 
   name = "System - Packet Out Errors"
   # +1000 helps out filtering low packet rates, this prevents a handful of packet errors to skew the percentage when for example only 100 packets are received/sent
