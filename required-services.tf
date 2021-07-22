@@ -11,7 +11,7 @@ module "required_services" {
 
   name                = "System - ${upper(substr(each.key, 0, 1))}${substr(each.key, 1, length(each.key) - 1)} service not running"
   type                = "process alert"
-  query               = "processes('').over('${local.required_services_filter},command:${each.key}').by('host').rollup('count').last('${lookup(each.value, "freshness_duration", var.required_services_default_freshness_duration)}') < ${lookup(each.value, "process_count", 1)}"
+  query               = "processes('${lookup(each.value, "process_filter", "")}').over('${local.required_services_filter},command:${each.key}').by('host').rollup('count').last('${lookup(each.value, "freshness_duration", var.required_services_default_freshness_duration)}') < ${lookup(each.value, "process_count", 1)}"
   alert_message       = "${each.key} service not running on ${var.service} Node {{host.name}}"
   recovery_message    = "${each.key} is back on ${var.service} Node {{host.name}}"
   require_full_window = false
