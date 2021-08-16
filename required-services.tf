@@ -9,7 +9,7 @@ module "required_services" {
   source   = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.6.2"
   for_each = var.required_services_config
 
-  name                = "System - ${lookup(each.value, "display_name", title(each.key))} service not running"
+  name                = "System - Service ${lookup(each.value, "display_name", title(each.key))} not running"
   type                = "process alert"
   query               = "processes('${each.key}').over('${local.required_services_filter}').by('host').rollup('count').last('${lookup(each.value, "freshness_duration", var.required_services_default_freshness_duration)}') < ${lookup(each.value, "process_count", 1)}"
   alert_message       = "${lookup(each.value, "display_name", "")} ${each.key} service not running on ${var.service} Node {{host.name}}"
