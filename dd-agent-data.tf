@@ -40,6 +40,6 @@ module "dd_agent_data" {
   notification_channel = var.notification_channel
   additional_tags      = var.additional_tags
   locked               = var.locked
-  name_prefix        = var.name_prefix
-  name_suffix        = var.name_suffix
+  name_prefix          = var.name_prefix
+  name_suffix          = var.name_suffix
 }
