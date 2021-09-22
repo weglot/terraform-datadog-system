@@ -1,5 +1,5 @@
 module "dd_agent_data" {
-  source = "git@github.com:kabisa/terraform-datadog-service-check-monitor.git?ref=1.2.0.rc1"
+  source = "git@github.com:kabisa/terraform-datadog-service-check-monitor.git?ref=1.2.0"
 
   name       = "System - Datadog data missing"
   check_name = "datadog.agent.up"
