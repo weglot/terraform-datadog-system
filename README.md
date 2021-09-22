@@ -1,52 +1,48 @@
 
-# Getting started
-[pre-commit](http://pre-commit.com/) was used to do Terraform linting and validating.
-
-Steps:
-   - Install [pre-commit](http://pre-commit.com/). E.g. `brew install pre-commit`.
-   - Run `pre-commit install` in the repo.
-   - That’s it! Now every time you commit a code change (`.tf` file), the hooks in the `hooks:` config `.pre-commit-config.yaml` will execute.
-
+![Datadog](https://imgix.datadoghq.com/img/about/presskit/logo-v/dd_vertical_purple.png)
 
 [//]: # (This file is generated. Do not edit)
 
 # Terraform module for Datadog System
 
-TOC:
-<!--ts-->
-   * [Getting started](#getting-started)
-   * [Terraform module for Datadog System](#terraform-module-for-datadog-system)
-      * [Datadog Agent](#datadog-agent)
-      * [Required Services](#required-services)
-      * [Bytes Sent](#bytes-sent)
-      * [Packets Out Errors](#packets-out-errors)
-      * [Memory Free Percent](#memory-free-percent)
-      * [Datadog Agent Data](#datadog-agent-data)
-      * [Packets In Errors](#packets-in-errors)
-      * [Swap](#swap)
-      * [Disk Free](#disk-free)
-      * [Memory Free Bytes](#memory-free-bytes)
-      * [Bytes Received](#bytes-received)
-      * [Disk Iowait](#disk-iowait)
-      * [Reboot](#reboot)
-      * [CPU](#cpu)
-      * [Module Variables](#module-variables)
+Monitors:
+* [Terraform module for Datadog System](#terraform-module-for-datadog-system)
+  * [Datadog Agent](#datadog-agent)
+  * [Required Services](#required-services)
+  * [Bytes Sent](#bytes-sent)
+  * [Disk Free Percent](#disk-free-percent)
+  * [Packets Out Errors](#packets-out-errors)
+  * [Memory Free Percent](#memory-free-percent)
+  * [Datadog Agent Data](#datadog-agent-data)
+  * [Disk Free Bytes](#disk-free-bytes)
+  * [Packets In Errors](#packets-in-errors)
+  * [Swap](#swap)
+  * [Memory Free Bytes](#memory-free-bytes)
+  * [Bytes Received](#bytes-received)
+  * [Disk Iowait](#disk-iowait)
+  * [Reboot](#reboot)
+  * [CPU](#cpu)
+  * [Module Variables](#module-variables)
 
-<!-- Added by: sjuuljanssen, at: vr 25 jun 2021 16:56:33 CEST -->
+# Getting started
+[pre-commit](http://pre-commit.com/) was used to do Terraform linting and validating.
 
-<!--te-->
+Steps:
+   - Install [pre-commit](http://pre-commit.com/). E.g. `brew install pre-commit`.
+   - Run `pre-commit install` in this repo. (Every time you cloud a repo with pre-commit enabled you will need to run the pre-commit install command)
+   - That’s it! Now every time you commit a code change (`.tf` file), the hooks in the `hooks:` config `.pre-commit-config.yaml` will execute.
 
 ## Datadog Agent
 
-| variable                       | default                                  | required | description                      |
-|--------------------------------|------------------------------------------|----------|----------------------------------|
-| dd_agent_enabled               | True                                     | No       |                                  |
-| dd_agent_evaluation_period     | last_15m                                 | No       |                                  |
-| dd_agent_note                  | ""                                       | No       |                                  |
-| dd_agent_docs                  | Not getting monitoring data could mean anything, best is to assume the host is down and consider this a major event | No       |                                  |
-| dd_agent_filter_override       | ""                                       | No       |                                  |
-| dd_agent_data_alerting_enabled | True                                     | No       |                                  |
-| dd_agent_data_priority         | 2                                        | No       | Number from 1 (high) to 5 (low). |
+| variable                   | default                                  | required | description                      |
+|----------------------------|------------------------------------------|----------|----------------------------------|
+| dd_agent_enabled           | True                                     | No       |                                  |
+| dd_agent_evaluation_period | last_15m                                 | No       |                                  |
+| dd_agent_note              | ""                                       | No       |                                  |
+| dd_agent_docs              | Not getting monitoring data could mean anything, best is to assume the host is down and consider this a major event | No       |                                  |
+| dd_agent_filter_override   | ""                                       | No       |                                  |
+| dd_agent_alerting_enabled  | True                                     | No       |                                  |
+| dd_agent_data_priority     | 2                                        | No       | Number from 1 (high) to 5 (low). |
 
 
 ## Required Services
@@ -76,6 +72,21 @@ TOC:
 | bytes_sent_filter_override   | ""       | No       |                                  |
 | bytes_sent_alerting_enabled  | True     | No       |                                  |
 | bytes_sent_priority          | 3        | No       | Number from 1 (high) to 5 (low). |
+
+
+## Disk Free Percent
+
+| variable                            | default  | required | description                      |
+|-------------------------------------|----------|----------|----------------------------------|
+| disk_free_percent_enabled           | True     | No       |                                  |
+| disk_free_percent_warning           | 20       | No       |                                  |
+| disk_free_percent_critical          | 10       | No       |                                  |
+| disk_free_percent_evaluation_period | last_5m  | No       |                                  |
+| disk_free_percent_note              | ""       | No       |                                  |
+| disk_free_percent_docs              | ""       | No       |                                  |
+| disk_free_percent_filter_override   | ""       | No       |                                  |
+| disk_free_percent_alerting_enabled  | True     | No       |                                  |
+| disk_free_percent_priority          | 1        | No       | Number from 1 (high) to 5 (low). |
 
 
 ## Packets Out Errors
@@ -110,15 +121,32 @@ TOC:
 
 ## Datadog Agent Data
 
-| variable                        | default                                  | required | description                      |
-|---------------------------------|------------------------------------------|----------|----------------------------------|
-| dd_agent_data_enabled           | True                                     | No       |                                  |
-| dd_agent_data_freshness_minutes | 15                                       | No       |                                  |
-| dd_agent_data_note              | ""                                       | No       |                                  |
-| dd_agent_data_docs              | Not getting monitoring data could mean anything, best is to assume the host is down and consider this a major event | No       |                                  |
-| dd_agent_data_filter_override   | ""                                       | No       |                                  |
-| dd_agent_alerting_enabled       | True                                     | No       |                                  |
-| dd_agent_priority               | 2                                        | No       | Number from 1 (high) to 5 (low). |
+| variable                            | default                                  | required | description                      |
+|-------------------------------------|------------------------------------------|----------|----------------------------------|
+| dd_agent_data_enabled               | True                                     | No       |                                  |
+| dd_agent_data_severity              | major                                    | No       |                                  |
+| dd_agent_data_note                  | ""                                       | No       |                                  |
+| dd_agent_data_docs                  | Not getting monitoring data could mean anything, best is to assume the host is down and consider this a major event | No       |                                  |
+| dd_agent_data_filter_override       | ""                                       | No       |                                  |
+| dd_agent_data_include_tags_override | null                                     | No       |                                  |
+| dd_agent_data_exclude_tags_override | null                                     | No       |                                  |
+| dd_agent_data_alerting_enabled      | True                                     | No       |                                  |
+| dd_agent_priority                   | null                                     | No       | Number from 1 (high) to 5 (low). |
+
+
+## Disk Free Bytes
+
+| variable                          | default     | required | description                      |
+|-----------------------------------|-------------|----------|----------------------------------|
+| disk_free_bytes_enabled           | False       | No       |                                  |
+| disk_free_bytes_warning           | 20000000000 | No       |                                  |
+| disk_free_bytes_critical          | 10000000000 | No       |                                  |
+| disk_free_bytes_evaluation_period | last_5m     | No       |                                  |
+| disk_free_bytes_note              | ""          | No       |                                  |
+| disk_free_bytes_docs              | ""          | No       |                                  |
+| disk_free_bytes_filter_override   | ""          | No       |                                  |
+| disk_free_bytes_alerting_enabled  | True        | No       |                                  |
+| disk_free_bytes_priority          | 1           | No       | Number from 1 (high) to 5 (low). |
 
 
 ## Packets In Errors
@@ -149,21 +177,6 @@ TOC:
 | swap_percent_free_filter_override   | ""       | No       |                                  |
 | swap_percent_free_alerting_enabled  | True     | No       |                                  |
 | swap_percent_free_priority          | 3        | No       | Number from 1 (high) to 5 (low). |
-
-
-## Disk Free
-
-| variable                    | default  | required | description                      |
-|-----------------------------|----------|----------|----------------------------------|
-| disk_free_enabled           | True     | No       |                                  |
-| disk_free_warning           | 20       | No       |                                  |
-| disk_free_critical          | 10       | No       |                                  |
-| disk_free_evaluation_period | last_5m  | No       |                                  |
-| disk_free_note              | ""       | No       |                                  |
-| disk_free_docs              | ""       | No       |                                  |
-| disk_free_filter_override   | ""       | No       |                                  |
-| disk_free_alerting_enabled  | True     | No       |                                  |
-| disk_free_priority          | 1        | No       | Number from 1 (high) to 5 (low). |
 
 
 ## Memory Free Bytes
@@ -240,16 +253,18 @@ TOC:
 
 ## Module Variables
 
-| variable             | default  | required | description  |
-|----------------------|----------|----------|--------------|
-| env                  |          | Yes      |              |
-| alert_env            |          | Yes      |              |
-| filter_str           |          | Yes      |              |
-| service              |          | Yes      |              |
-| notification_channel |          | Yes      |              |
-| additional_tags      | []       | No       |              |
-| name_prefix          | ""       | No       |              |
-| name_suffix          | ""       | No       |              |
-| locked               | True     | No       |              |
+| variable                   | default  | required | description  |
+|----------------------------|----------|----------|--------------|
+| env                        |          | Yes      |              |
+| alert_env                  |          | Yes      |              |
+| filter_str                 |          | Yes      |              |
+| service                    |          | Yes      |              |
+| notification_channel       |          | Yes      |              |
+| additional_tags            | []       | No       |              |
+| name_prefix                | ""       | No       |              |
+| name_suffix                | ""       | No       |              |
+| locked                     | True     | No       |              |
+| service_check_include_tags | null     | No       |              |
+| service_check_exclude_tags | null     | No       |              |
 
 
