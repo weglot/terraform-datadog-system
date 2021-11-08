@@ -6,7 +6,7 @@ locals {
 }
 
 module "memory_free_bytes" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.6.2"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=terraform-provider-3"
 
   name             = "System - Memory Free Bytes"
   query            = "avg(${var.memory_free_bytes_evaluation_period}):min:system.mem.free{${local.memory_free_bytes_filter}} by {host} < ${var.memory_free_bytes_critical}"

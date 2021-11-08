@@ -6,7 +6,7 @@ locals {
 }
 
 module "required_services" {
-  source   = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.6.2"
+  source   = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=terraform-provider-3"
   for_each = var.required_services_config
 
   name                = "System - Service ${lookup(each.value, "display_name", title(each.key))}"

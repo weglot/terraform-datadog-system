@@ -1,9 +1,9 @@
 module "dd_agent_data" {
-  source = "git@github.com:kabisa/terraform-datadog-service-check-monitor.git?ref=1.2.0"
+  source = "git@github.com:kabisa/terraform-datadog-service-check-monitor.git?ref=terraform-provider-3"
 
-  name       = "System - Datadog data missing"
-  check_name = "datadog.agent.up"
-  by_tags    = ["host"]
+  name        = "System - Datadog data missing"
+  metric_name = "datadog.agent.up"
+  by_tags     = ["host"]
 
   include_tags = coalesce(
     var.dd_agent_data_include_tags_override,
