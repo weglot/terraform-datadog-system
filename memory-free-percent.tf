@@ -6,7 +6,7 @@ locals {
 }
 
 module "memory_free_percent" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=terraform-provider-3"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.7.0"
 
   name             = "System - Memory Free Percent"
   query            = "avg(${var.memory_free_percent_evaluation_period}):min:system.mem.pct_usable{${local.memory_free_percent_filter}} by {host} < ${var.memory_free_percent_critical}"
