@@ -2,35 +2,41 @@ variable "env" {
   type = string
 }
 
-variable "alert_env" {
-  type = string
-}
-
 variable "filter_str" {
   type = string
 }
 
 variable "service" {
-  type = string
+  description = "Service name of what you're monitoring. This also sets the service:<service> tag on the monitor"
+  type        = string
+}
+
+variable "service_display_name" {
+  type    = string
+  default = null
 }
 
 variable "notification_channel" {
-  type = string
+  description = "Channel to which datadog sends alerts, will be overridden by alerting_enabled if that's set to false"
+  type        = string
 }
 
 variable "additional_tags" {
-  type    = list(string)
-  default = []
+  description = "Additional tags to set on the monitor. Good tagging can be hard but very useful to make cross sections of the environment. Datadog has a few default tags. https://docs.datadoghq.com/getting_started/tagging/ is a good place to start reading about tags"
+  type        = list(string)
+  default     = []
 }
 
 variable "name_prefix" {
-  type    = string
-  default = ""
+  description = "Can be used to prefix to the Monitor name"
+  type        = string
+  default     = ""
 }
 
 variable "name_suffix" {
-  type    = string
-  default = ""
+  description = "Can be used to suffix to the Monitor name"
+  type        = string
+  default     = ""
 }
 
 variable "locked" {
@@ -42,11 +48,13 @@ variable "locked" {
 # locals.tf file. As a local, the fallback contain references to other
 # variables.
 variable "service_check_include_tags" {
-  type    = list(string)
-  default = null
+  description = "List of tags for the \"over\" part of the query. Can be either key:value tags or boolean tags."
+  type        = list(string)
+  default     = null
 }
 
 variable "service_check_exclude_tags" {
-  type    = list(string)
-  default = null
+  description = "List of tags for the \"exclude\" part of the query. Can be either key:value tags or boolean tags."
+  type        = list(string)
+  default     = null
 }

@@ -27,7 +27,7 @@ module "packets_in_errors" {
   note               = var.packets_in_errors_note
 
   # module level vars
-  env                  = var.alert_env
+  env                  = var.env
   service              = var.service
   notification_channel = var.notification_channel
   additional_tags      = var.additional_tags

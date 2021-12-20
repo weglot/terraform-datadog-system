@@ -1,5 +1,5 @@
 module "dd_agent_data" {
-  source = "git@github.com:kabisa/terraform-datadog-service-check-monitor.git?ref=terraform-provider-3"
+  source = "git@github.com:kabisa/terraform-datadog-service-check-monitor.git?ref=1.3.0"
 
   name        = "System - Datadog data missing"
   metric_name = "datadog.agent.up"
@@ -35,8 +35,9 @@ module "dd_agent_data" {
   note               = var.dd_agent_data_note
 
   # module level vars
-  env                  = var.alert_env
+  env                  = var.env
   service              = var.service
+  service_display_name = var.service_display_name
   notification_channel = var.notification_channel
   additional_tags      = var.additional_tags
   locked               = var.locked
