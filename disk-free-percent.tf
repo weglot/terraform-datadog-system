@@ -6,7 +6,7 @@ locals {
 }
 
 module "disk_free_percent" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.6.2"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.7.0"
 
   name             = "System - Disk Free (percentage)"
   query            = "avg(${var.disk_free_percent_evaluation_period}):100 * min:system.disk.free{${local.disk_free_percent_filter}} by {host,device} / min:system.disk.total{${local.disk_free_percent_filter}} by {host,device} < ${var.disk_free_percent_critical}"
@@ -23,7 +23,7 @@ module "disk_free_percent" {
   note               = var.disk_free_percent_note
 
   # module level vars
-  env                  = var.alert_env
+  env                  = var.env
   service              = var.service
   notification_channel = var.notification_channel
   additional_tags      = var.additional_tags

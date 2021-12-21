@@ -9,7 +9,7 @@ locals {
 }
 
 module "packets_in_errors" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.6.2"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.7.0"
 
   name = "System - Packet In Errors"
   # +1000 helps out filtering low packet rates, this prevents a handful of packet errors to skew the percentage when for example only 100 packets are received/sent
@@ -27,7 +27,7 @@ module "packets_in_errors" {
   note               = var.packets_in_errors_note
 
   # module level vars
-  env                  = var.alert_env
+  env                  = var.env
   service              = var.service
   notification_channel = var.notification_channel
   additional_tags      = var.additional_tags

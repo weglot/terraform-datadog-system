@@ -6,7 +6,7 @@ locals {
 }
 
 module "cpu" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.6.2"
+  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.7.0"
 
   name             = "System - High CPU"
   query            = "avg(${var.cpu_evaluation_period}):avg:system.cpu.user{${local.cpu_filter}} by {host} + avg:system.cpu.system{${local.cpu_filter}} by {host} > ${var.cpu_critical}"
@@ -23,7 +23,7 @@ module "cpu" {
   note               = var.cpu_note
 
   # module level vars
-  env                  = var.alert_env
+  env                  = var.env
   service              = var.service
   notification_channel = var.notification_channel
   additional_tags      = var.additional_tags

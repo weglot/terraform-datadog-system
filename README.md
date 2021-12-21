@@ -253,18 +253,18 @@ Steps:
 
 ## Module Variables
 
-| variable                   | default  | required | description  |
-|----------------------------|----------|----------|--------------|
-| env                        |          | Yes      |              |
-| alert_env                  |          | Yes      |              |
-| filter_str                 |          | Yes      |              |
-| service                    |          | Yes      |              |
-| notification_channel       |          | Yes      |              |
-| additional_tags            | []       | No       |              |
-| name_prefix                | ""       | No       |              |
-| name_suffix                | ""       | No       |              |
-| locked                     | True     | No       |              |
-| service_check_include_tags | null     | No       |              |
-| service_check_exclude_tags | null     | No       |              |
+| variable                   | default  | required | description                                                                                          |
+|----------------------------|----------|----------|------------------------------------------------------------------------------------------------------|
+| env                        |          | Yes      |                                                                                                      |
+| filter_str                 |          | Yes      |                                                                                                      |
+| service                    |          | Yes      | Service name of what you're monitoring. This also sets the service:<service> tag on the monitor      |
+| service_display_name       | null     | No       |                                                                                                      |
+| notification_channel       |          | Yes      | Channel to which datadog sends alerts, will be overridden by alerting_enabled if that's set to false |
+| additional_tags            | []       | No       | Additional tags to set on the monitor. Good tagging can be hard but very useful to make cross sections of the environment. Datadog has a few default tags. https://docs.datadoghq.com/getting_started/tagging/ is a good place to start reading about tags |
+| name_prefix                | ""       | No       | Can be used to prefix to the Monitor name                                                            |
+| name_suffix                | ""       | No       | Can be used to suffix to the Monitor name                                                            |
+| locked                     | True     | No       |                                                                                                      |
+| service_check_include_tags | null     | No       | List of tags for the "over" part of the query. Can be either key:value tags or boolean tags.         |
+| service_check_exclude_tags | null     | No       | List of tags for the "exclude" part of the query. Can be either key:value tags or boolean tags.      |
 
 
