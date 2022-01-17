@@ -34,6 +34,8 @@ Steps:
 
 ## Datadog Agent
 
+Not getting monitoring data could mean anything, best is to assume the host is down and consider this a major event
+
 | variable                   | default                                  | required | description                      |
 |----------------------------|------------------------------------------|----------|----------------------------------|
 | dd_agent_enabled           | True                                     | No       |                                  |
@@ -91,6 +93,8 @@ Steps:
 
 ## Packets Out Errors
 
+Packet errors can severely degrade network performance. A good article about it is found here: https://netcraftsmen.com/understanding-interface-errors-and-tcp-performance/
+
 | variable                             | default                                  | required | description                      |
 |--------------------------------------|------------------------------------------|----------|----------------------------------|
 | packets_out_errors_enabled           | True                                     | No       |                                  |
@@ -121,6 +125,8 @@ Steps:
 
 ## Datadog Agent Data
 
+Not getting monitoring data could mean anything, best is to assume the host is down and consider this a major event
+
 | variable                            | default                                  | required | description                      |
 |-------------------------------------|------------------------------------------|----------|----------------------------------|
 | dd_agent_data_enabled               | True                                     | No       |                                  |
@@ -149,6 +155,8 @@ Steps:
 
 
 ## Packets In Errors
+
+Packet errors can severely degrade network performance. A good article about it is found here: https://netcraftsmen.com/understanding-interface-errors-and-tcp-performance/
 
 | variable                            | default                                  | required | description                      |
 |-------------------------------------|------------------------------------------|----------|----------------------------------|
@@ -209,6 +217,8 @@ Steps:
 
 
 ## Disk Iowait
+
+The CPU is mainly waiting for data to be written on disk. This means in general that application running on this machine is stalled
 
 | variable                       | default                                  | required | description                      |
 |--------------------------------|------------------------------------------|----------|----------------------------------|
