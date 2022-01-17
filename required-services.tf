@@ -21,7 +21,7 @@ module "required_services" {
   alerting_enabled = var.required_services_alerting_enabled
   # no warning
   critical_threshold = lookup(each.value, "process_count", 1)
-  priority           = var.required_services_default_priority + var.priority_offset
+  priority           = min(var.required_services_default_priority + var.priority_offset, 5)
   note               = var.required_services_default_note
   docs               = var.required_services_default_docs
 

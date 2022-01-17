@@ -30,7 +30,7 @@ module "dd_agent_data" {
   critical_threshold = 1
   warning_threshold  = 1
   ok_threshold       = 1
-  priority           = var.dd_agent_data_priority + var.priority_offset
+  priority           = min(var.dd_agent_data_priority + var.priority_offset, 5)
   docs               = var.dd_agent_data_docs
   note               = var.dd_agent_data_note
 

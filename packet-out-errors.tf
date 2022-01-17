@@ -19,7 +19,7 @@ module "packets_out_errors" {
   alerting_enabled   = var.packets_out_errors_alerting_enabled
   warning_threshold  = var.packets_out_errors_warning
   critical_threshold = var.packets_out_errors_critical
-  priority           = var.packets_out_errors_priority + var.priority_offset
+  priority           = min(var.packets_out_errors_priority + var.priority_offset, 5)
   docs               = var.packets_out_errors_docs
   note               = var.packets_out_errors_note
 

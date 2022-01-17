@@ -18,7 +18,7 @@ module "memory_free_bytes" {
   alerting_enabled   = var.memory_free_bytes_alerting_enabled
   warning_threshold  = var.memory_free_bytes_warning
   critical_threshold = var.memory_free_bytes_critical
-  priority           = var.memory_free_bytes_priority + var.priority_offset
+  priority           = min(var.memory_free_bytes_priority + var.priority_offset, 5)
   docs               = var.memory_free_bytes_docs
   note               = var.memory_free_bytes_note
 

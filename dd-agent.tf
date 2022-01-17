@@ -18,7 +18,7 @@ module "dd_agent" {
   alerting_enabled = var.dd_agent_alerting_enabled
   # no warning possible
   critical_threshold = 1
-  priority           = var.dd_agent_priority + var.priority_offset
+  priority           = min(var.dd_agent_priority + var.priority_offset, 5)
   docs               = var.dd_agent_docs
   note               = var.dd_agent_note
 

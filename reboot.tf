@@ -19,7 +19,7 @@ module "reboot" {
   alerting_enabled = var.reboot_alerting_enabled
   # no warning
   critical_threshold = 0
-  priority           = var.reboot_priority + var.priority_offset
+  priority           = min(var.reboot_priority + var.priority_offset, 5)
   docs               = var.reboot_docs
   note               = var.reboot_note
 
