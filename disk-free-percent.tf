@@ -18,7 +18,7 @@ module "disk_free_percent" {
   alerting_enabled   = var.disk_free_percent_alerting_enabled
   warning_threshold  = var.disk_free_percent_warning
   critical_threshold = var.disk_free_percent_critical
-  priority           = var.disk_free_percent_priority
+  priority           = var.disk_free_percent_priority + var.priority_offset
   docs               = var.disk_free_percent_docs
   note               = var.disk_free_percent_note
 

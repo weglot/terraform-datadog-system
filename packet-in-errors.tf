@@ -22,7 +22,7 @@ module "packets_in_errors" {
   alerting_enabled   = var.packets_in_errors_alerting_enabled
   warning_threshold  = var.packets_in_errors_warning
   critical_threshold = var.packets_in_errors_critical
-  priority           = var.packets_in_errors_priority
+  priority           = var.packets_in_errors_priority + var.priority_offset
   docs               = var.packets_in_errors_docs
   note               = var.packets_in_errors_note
 

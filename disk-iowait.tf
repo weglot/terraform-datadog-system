@@ -18,7 +18,7 @@ module "disk_io_wait" {
   alerting_enabled   = var.disk_io_wait_alerting_enabled
   warning_threshold  = var.disk_io_wait_warning
   critical_threshold = var.disk_io_wait_critical
-  priority           = var.disk_io_wait_priority
+  priority           = var.disk_io_wait_priority + var.priority_offset
   docs               = var.disk_io_wait_docs
   note               = var.disk_io_wait_note
 

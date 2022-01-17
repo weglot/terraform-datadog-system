@@ -18,7 +18,7 @@ module "memory_free_percent" {
   alerting_enabled   = var.memory_free_percent_alerting_enabled
   warning_threshold  = var.memory_free_percent_warning
   critical_threshold = var.memory_free_percent_critical
-  priority           = var.memory_free_percent_priority
+  priority           = var.memory_free_percent_priority + var.priority_offset
   docs               = var.memory_free_percent_docs
   note               = var.memory_free_percent_note
 

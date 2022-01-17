@@ -18,7 +18,7 @@ module "cpu" {
   alerting_enabled   = var.cpu_alerting_enabled
   warning_threshold  = var.cpu_warning
   critical_threshold = var.cpu_critical
-  priority           = var.cpu_priority
+  priority           = var.cpu_priority + var.priority_offset
   docs               = var.cpu_docs
   note               = var.cpu_note
 

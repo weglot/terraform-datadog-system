@@ -266,5 +266,6 @@ Steps:
 | locked                     | True     | No       |                                                                                                      |
 | service_check_include_tags | null     | No       | List of tags for the "over" part of the query. Can be either key:value tags or boolean tags.         |
 | service_check_exclude_tags | null     | No       | List of tags for the "exclude" part of the query. Can be either key:value tags or boolean tags.      |
+| priority_offset            | 0        | No       | For non production workloads we can +1 on the priorities                                             |
 
 

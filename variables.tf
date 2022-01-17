@@ -58,3 +58,8 @@ variable "service_check_exclude_tags" {
   type        = list(string)
   default     = null
 }
+
+variable "priority_offset" {
+  description = "For non production workloads we can +1 on the priorities"
+  default     = 0
+}

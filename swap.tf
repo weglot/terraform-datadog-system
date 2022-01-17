@@ -19,7 +19,7 @@ module "swap_percent_free" {
   alerting_enabled   = var.swap_percent_free_alerting_enabled
   warning_threshold  = var.swap_percent_free_warning
   critical_threshold = var.swap_percent_free_critical
-  priority           = var.swap_percent_free_priority
+  priority           = var.swap_percent_free_priority + var.priority_offset
   docs               = var.swap_percent_free_docs
   note               = var.swap_percent_free_note
 
