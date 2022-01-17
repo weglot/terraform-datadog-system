@@ -34,6 +34,8 @@ Steps:
 
 ## Datadog Agent
 
+Not getting monitoring data could mean anything, best is to assume the host is down and consider this a major event
+
 | variable                   | default                                  | required | description                      |
 |----------------------------|------------------------------------------|----------|----------------------------------|
 | dd_agent_enabled           | True                                     | No       |                                  |
@@ -91,6 +93,8 @@ Steps:
 
 ## Packets Out Errors
 
+Packet errors can severely degrade network performance. A good article about it is found here: https://netcraftsmen.com/understanding-interface-errors-and-tcp-performance/
+
 | variable                             | default                                  | required | description                      |
 |--------------------------------------|------------------------------------------|----------|----------------------------------|
 | packets_out_errors_enabled           | True                                     | No       |                                  |
@@ -121,17 +125,18 @@ Steps:
 
 ## Datadog Agent Data
 
+Not getting monitoring data could mean anything, best is to assume the host is down and consider this a major event
+
 | variable                            | default                                  | required | description                      |
 |-------------------------------------|------------------------------------------|----------|----------------------------------|
 | dd_agent_data_enabled               | True                                     | No       |                                  |
-| dd_agent_data_severity              | major                                    | No       |                                  |
 | dd_agent_data_note                  | ""                                       | No       |                                  |
 | dd_agent_data_docs                  | Not getting monitoring data could mean anything, best is to assume the host is down and consider this a major event | No       |                                  |
 | dd_agent_data_filter_override       | ""                                       | No       |                                  |
 | dd_agent_data_include_tags_override | null                                     | No       |                                  |
 | dd_agent_data_exclude_tags_override | null                                     | No       |                                  |
 | dd_agent_data_alerting_enabled      | True                                     | No       |                                  |
-| dd_agent_priority                   | null                                     | No       | Number from 1 (high) to 5 (low). |
+| dd_agent_priority                   | 2                                        | No       | Number from 1 (high) to 5 (low). |
 
 
 ## Disk Free Bytes
@@ -150,6 +155,8 @@ Steps:
 
 
 ## Packets In Errors
+
+Packet errors can severely degrade network performance. A good article about it is found here: https://netcraftsmen.com/understanding-interface-errors-and-tcp-performance/
 
 | variable                            | default                                  | required | description                      |
 |-------------------------------------|------------------------------------------|----------|----------------------------------|
@@ -211,6 +218,8 @@ Steps:
 
 ## Disk Iowait
 
+The CPU is mainly waiting for data to be written on disk. This means in general that application running on this machine is stalled
+
 | variable                       | default                                  | required | description                      |
 |--------------------------------|------------------------------------------|----------|----------------------------------|
 | disk_io_wait_enabled           | True                                     | No       |                                  |
@@ -266,5 +275,6 @@ Steps:
 | locked                     | True     | No       |                                                                                                      |
 | service_check_include_tags | null     | No       | List of tags for the "over" part of the query. Can be either key:value tags or boolean tags.         |
 | service_check_exclude_tags | null     | No       | List of tags for the "exclude" part of the query. Can be either key:value tags or boolean tags.      |
+| priority_offset            | 0        | No       | For non production workloads we can +1 on the priorities                                             |
 
 

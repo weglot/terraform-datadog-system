@@ -18,7 +18,7 @@ module "disk_free_bytes" {
   alerting_enabled   = var.disk_free_bytes_alerting_enabled
   warning_threshold  = var.disk_free_bytes_warning
   critical_threshold = var.disk_free_bytes_critical
-  priority           = var.disk_free_bytes_priority
+  priority           = min(var.disk_free_bytes_priority + var.priority_offset, 5)
   docs               = var.disk_free_bytes_docs
   note               = var.disk_free_bytes_note
 

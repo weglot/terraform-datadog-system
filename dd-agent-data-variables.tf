@@ -3,11 +3,6 @@ variable "dd_agent_data_enabled" {
   default = true
 }
 
-variable "dd_agent_data_severity" {
-  type    = string
-  default = "major"
-}
-
 variable "dd_agent_data_note" {
   type    = string
   default = ""
@@ -42,5 +37,5 @@ variable "dd_agent_priority" {
   description = "Number from 1 (high) to 5 (low)."
 
   type    = number
-  default = null
+  default = 2
 }

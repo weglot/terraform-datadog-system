@@ -18,7 +18,7 @@ module "bytes_received" {
   alerting_enabled   = var.bytes_received_alerting_enabled
   warning_threshold  = var.bytes_received_warning
   critical_threshold = var.bytes_received_critical
-  priority           = var.bytes_received_priority
+  priority           = min(var.bytes_received_priority + var.priority_offset, 5)
   docs               = var.bytes_received_docs
   note               = var.bytes_received_note
 
