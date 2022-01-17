@@ -124,14 +124,13 @@ Steps:
 | variable                            | default                                  | required | description                      |
 |-------------------------------------|------------------------------------------|----------|----------------------------------|
 | dd_agent_data_enabled               | True                                     | No       |                                  |
-| dd_agent_data_severity              | major                                    | No       |                                  |
 | dd_agent_data_note                  | ""                                       | No       |                                  |
 | dd_agent_data_docs                  | Not getting monitoring data could mean anything, best is to assume the host is down and consider this a major event | No       |                                  |
 | dd_agent_data_filter_override       | ""                                       | No       |                                  |
 | dd_agent_data_include_tags_override | null                                     | No       |                                  |
 | dd_agent_data_exclude_tags_override | null                                     | No       |                                  |
 | dd_agent_data_alerting_enabled      | True                                     | No       |                                  |
-| dd_agent_priority                   | null                                     | No       | Number from 1 (high) to 5 (low). |
+| dd_agent_priority                   | 2                                        | No       | Number from 1 (high) to 5 (low). |
 
 
 ## Disk Free Bytes
