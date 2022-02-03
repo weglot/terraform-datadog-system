@@ -1,3 +1,3 @@
-This module is repsonsible for System level alerts. CPU, network, memory, disk, etc..
+This module is responsible for System level alerts. CPU, network, memory, disk, etc...
 Process performance monitoring (cpu, memory) is not covered in this module.
 It is possible though to check if specific processes are running.
