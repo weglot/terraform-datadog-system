@@ -9,6 +9,29 @@ This module is repsonsible for System level alerts. CPU, network, memory, disk, 
 Process performance monitoring (cpu, memory) is not covered in this module.
 It is possible though to check if specific processes are running.
 
+This module is part of a larger suite of modules that provide alerts in Datadog.
+Other modules can be found on the [Terraform Registry](https://registry.terraform.io/search/modules?namespace=kabisa&provider=datadog)
+
+We have two base modules we use to standardise development of our Monitor Modules:
+- [generic monitor](https://github.com/kabisa/terraform-datadog-generic-monitor) Used in 90% of our alerts
+- [service check monitor](https://github.com/kabisa/terraform-datadog-service-check-monitor)
+
+Modules are generated with this tool: https://github.com/kabisa/datadog-terraform-generator
+
+# Example Usage
+
+```terraform
+module "system" {
+  source = "kabisa/system/datadog"
+
+  notification_channel       = "mail@example.com"
+  service                    = "ServiceX"
+  env                        = "prd"
+  filter_str                 = "host:myserver"
+  service_check_include_tags = ["host:myserver"]
+}
+```
+
 Monitors:
 * [Terraform module for Datadog System](#terraform-module-for-datadog-system)
   * [Datadog Agent](#datadog-agent)
