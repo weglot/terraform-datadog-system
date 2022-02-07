@@ -46,3 +46,8 @@ variable "swap_percent_free_priority" {
   type    = number
   default = 3
 }
+
+variable "swap_percent_free_notification_channel_override" {
+  type    = string
+  default = ""
+}

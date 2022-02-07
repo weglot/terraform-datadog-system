@@ -29,3 +29,8 @@ variable "reboot_priority" {
   type    = number
   default = 3
 }
+
+variable "reboot_notification_channel_override" {
+  type    = string
+  default = ""
+}

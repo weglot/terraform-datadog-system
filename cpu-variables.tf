@@ -44,3 +44,8 @@ variable "cpu_priority" {
   type    = number
   default = 2
 }
+
+variable "cpu_notification_channel_override" {
+  type    = string
+  default = ""
+}
