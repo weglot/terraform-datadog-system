@@ -46,6 +46,7 @@ Monitors:
   * [Swap](#swap)
   * [Memory Free Bytes](#memory-free-bytes)
   * [Bytes Received](#bytes-received)
+  * [Memory Usable Percent](#memory-usable-percent)
   * [Disk Iowait](#disk-iowait)
   * [Reboot](#reboot)
   * [CPU](#cpu)
@@ -308,6 +309,34 @@ avg(last_30m):avg:system.net.bytes_rcvd{tag:xxx} by {host} > 5000000
 | bytes_received_alerting_enabled              | True     | No       |                                  |
 | bytes_received_priority                      | 3        | No       | Number from 1 (high) to 5 (low). |
 | bytes_received_notification_channel_override | ""       | No       |                                  |
+
+
+## Memory Usable Percent
+
+This looks at system.mem.usable, only use this when memory_free_percent doesn't have data
+
+Query:
+```terraform
+avg(last_5m):100 * min:system.mem.usable{tag:xxx} by {host} / min:system.mem.total{tag:xxx} by {host} < 10
+```
+
+| variable                                            | default                                  | required | description                      |
+|-----------------------------------------------------|------------------------------------------|----------|----------------------------------|
+| memory_usable_percent_enabled                       | False                                    | No       |                                  |
+| memory_usable_percent_warning                       | 20                                       | No       |                                  |
+| memory_usable_percent_critical                      | 10                                       | No       |                                  |
+| memory_usable_percent_evaluation_period             | last_5m                                  | No       |                                  |
+| memory_usable_percent_note                          | ""                                       | No       |                                  |
+| memory_usable_percent_docs                          | This looks at system.mem.usable, only use this when memory_free_percent doesn't have data | No       |                                  |
+| memory_usable_percent_filter_override               | ""                                       | No       |                                  |
+| memory_usable_percent_alerting_enabled              | True                                     | No       |                                  |
+| memory_usable_percent_no_data_timeframe             | None                                     | No       |                                  |
+| memory_usable_percent_notify_no_data                | False                                    | No       |                                  |
+| memory_usable_percent_ok_threshold                  | None                                     | No       |                                  |
+| memory_usable_percent_name_prefix                   | ""                                       | No       |                                  |
+| memory_usable_percent_name_suffix                   | ""                                       | No       |                                  |
+| memory_usable_percent_priority                      | 2                                        | No       | Number from 1 (high) to 5 (low). |
+| memory_usable_percent_notification_channel_override | ""                                       | No       |                                  |
 
 
 ## Disk Iowait

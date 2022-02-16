@@ -26,6 +26,7 @@ module "packets_out_errors" {
   # module level vars
   env                  = var.env
   service              = var.service
+  service_display_name = var.service_display_name
   notification_channel = try(coalesce(var.packets_out_errors_notification_channel_override, var.notification_channel), "")
   additional_tags      = var.additional_tags
   locked               = var.locked
