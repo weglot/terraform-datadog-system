@@ -46,3 +46,8 @@ variable "disk_free_percent_priority" {
   type    = number
   default = 1
 }
+
+variable "disk_free_percent_notification_channel_override" {
+  type    = string
+  default = ""
+}

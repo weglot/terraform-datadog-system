@@ -18,17 +18,17 @@ module "reboot" {
   enabled          = var.reboot_enabled
   alerting_enabled = var.reboot_alerting_enabled
   # no warning
-  critical_threshold = 0
-  priority           = min(var.reboot_priority + var.priority_offset, 5)
-  docs               = var.reboot_docs
-  note               = var.reboot_note
+  critical_threshold   = 0
+  priority             = min(var.reboot_priority + var.priority_offset, 5)
+  docs                 = var.reboot_docs
+  note                 = var.reboot_note
+  notification_channel = try(coalesce(var.reboot_notification_channel_override, var.notification_channel), "")
 
   # module level vars
-  env                  = var.env
-  service              = var.service
-  notification_channel = var.notification_channel
-  additional_tags      = var.additional_tags
-  locked               = var.locked
-  name_prefix          = var.name_prefix
-  name_suffix          = var.name_suffix
+  env             = var.env
+  service         = var.service
+  additional_tags = var.additional_tags
+  locked          = var.locked
+  name_prefix     = var.name_prefix
+  name_suffix     = var.name_suffix
 }

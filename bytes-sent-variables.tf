@@ -46,3 +46,8 @@ variable "bytes_sent_priority" {
   type    = number
   default = 3
 }
+
+variable "bytes_sent_notification_channel_override" {
+  type    = string
+  default = ""
+}

@@ -46,3 +46,8 @@ variable "bytes_received_priority" {
   type    = number
   default = 3
 }
+
+variable "bytes_received_notification_channel_override" {
+  type    = string
+  default = ""
+}

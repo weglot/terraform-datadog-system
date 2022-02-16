@@ -20,17 +20,17 @@ module "required_services" {
   enabled          = var.required_services_enabled
   alerting_enabled = var.required_services_alerting_enabled
   # no warning
-  critical_threshold = lookup(each.value, "process_count", 1)
-  priority           = min(var.required_services_default_priority + var.priority_offset, 5)
-  note               = var.required_services_default_note
-  docs               = var.required_services_default_docs
+  critical_threshold   = lookup(each.value, "process_count", 1)
+  priority             = min(var.required_services_default_priority + var.priority_offset, 5)
+  note                 = lookup(each.value, "note", var.required_services_default_note)
+  docs                 = lookup(each.value, "docs", var.required_services_default_docs)
+  notification_channel = try(coalesce(var.required_services_notification_channel_override, var.notification_channel), "")
 
   # module level vars
-  env                  = var.env
-  service              = var.service
-  notification_channel = var.notification_channel
-  additional_tags      = var.additional_tags
-  locked               = var.locked
-  name_prefix          = var.name_prefix
-  name_suffix          = var.name_suffix
+  env             = var.env
+  service         = var.service
+  additional_tags = var.additional_tags
+  locked          = var.locked
+  name_prefix     = var.name_prefix
+  name_suffix     = var.name_suffix
 }

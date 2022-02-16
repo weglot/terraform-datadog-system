@@ -47,3 +47,8 @@ variable "memory_free_bytes_priority" {
   type    = number
   default = 2
 }
+
+variable "memory_free_bytes_notification_channel_override" {
+  type    = string
+  default = ""
+}

@@ -14,20 +14,20 @@ module "bytes_sent" {
   recovery_message = "High egress traffic on ${var.service} Node {{host.name}} Recovered ({{value}})"
 
   # monitor level vars
-  enabled            = var.bytes_sent_enabled
-  alerting_enabled   = var.bytes_sent_alerting_enabled
-  warning_threshold  = var.bytes_sent_warning
-  critical_threshold = var.bytes_sent_critical
-  priority           = min(var.bytes_sent_priority + var.priority_offset, 5)
-  docs               = var.bytes_sent_docs
-  note               = var.bytes_sent_note
+  enabled              = var.bytes_sent_enabled
+  alerting_enabled     = var.bytes_sent_alerting_enabled
+  warning_threshold    = var.bytes_sent_warning
+  critical_threshold   = var.bytes_sent_critical
+  priority             = min(var.bytes_sent_priority + var.priority_offset, 5)
+  docs                 = var.bytes_sent_docs
+  note                 = var.bytes_sent_note
+  notification_channel = try(coalesce(var.bytes_sent_notification_channel_override, var.notification_channel), "")
 
   # module level vars
-  env                  = var.env
-  service              = var.service
-  notification_channel = var.notification_channel
-  additional_tags      = var.additional_tags
-  locked               = var.locked
-  name_prefix          = var.name_prefix
-  name_suffix          = var.name_suffix
+  env             = var.env
+  service         = var.service
+  additional_tags = var.additional_tags
+  locked          = var.locked
+  name_prefix     = var.name_prefix
+  name_suffix     = var.name_suffix
 }

@@ -39,3 +39,8 @@ variable "required_services_default_priority" {
   type    = number
   default = 2
 }
+
+variable "required_services_notification_channel_override" {
+  type    = string
+  default = ""
+}

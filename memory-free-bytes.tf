@@ -14,20 +14,20 @@ module "memory_free_bytes" {
   recovery_message = "Available memory on ${var.service} Node {{host.name}} has recovered {{value}}"
 
   # monitor level vars
-  enabled            = var.memory_free_bytes_enabled
-  alerting_enabled   = var.memory_free_bytes_alerting_enabled
-  warning_threshold  = var.memory_free_bytes_warning
-  critical_threshold = var.memory_free_bytes_critical
-  priority           = min(var.memory_free_bytes_priority + var.priority_offset, 5)
-  docs               = var.memory_free_bytes_docs
-  note               = var.memory_free_bytes_note
+  enabled              = var.memory_free_bytes_enabled
+  alerting_enabled     = var.memory_free_bytes_alerting_enabled
+  warning_threshold    = var.memory_free_bytes_warning
+  critical_threshold   = var.memory_free_bytes_critical
+  priority             = min(var.memory_free_bytes_priority + var.priority_offset, 5)
+  docs                 = var.memory_free_bytes_docs
+  note                 = var.memory_free_bytes_note
+  notification_channel = try(coalesce(var.memory_free_bytes_notification_channel_override, var.notification_channel), "")
 
   # module level vars
-  env                  = var.env
-  service              = var.service
-  notification_channel = var.notification_channel
-  additional_tags      = var.additional_tags
-  locked               = var.locked
-  name_prefix          = var.name_prefix
-  name_suffix          = var.name_suffix
+  env             = var.env
+  service         = var.service
+  additional_tags = var.additional_tags
+  locked          = var.locked
+  name_prefix     = var.name_prefix
+  name_suffix     = var.name_suffix
 }
