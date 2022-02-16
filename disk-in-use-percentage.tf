@@ -21,7 +21,7 @@ module "disk_in_use_percentage" {
   alerting_enabled     = var.disk_in_use_percentage_alerting_enabled
   warning_threshold    = var.disk_in_use_percentage_warning
   critical_threshold   = var.disk_in_use_percentage_critical
-  priority             = var.disk_in_use_percentage_priority
+  priority             = min(var.disk_in_use_percentage_priority + var.priority_offset, 5)
   docs                 = var.disk_in_use_percentage_docs
   note                 = var.disk_in_use_percentage_note
   notification_channel = try(coalesce(var.disk_in_use_percentage_notification_channel_override, var.notification_channel), "")

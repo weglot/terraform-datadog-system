@@ -21,7 +21,7 @@ module "memory_usable_percent" {
   alerting_enabled     = var.memory_usable_percent_alerting_enabled
   warning_threshold    = var.memory_usable_percent_warning
   critical_threshold   = var.memory_usable_percent_critical
-  priority             = var.memory_usable_percent_priority
+  priority             = min(var.memory_usable_percent_priority + var.priority_offset, 5)
   docs                 = var.memory_usable_percent_docs
   note                 = var.memory_usable_percent_note
   notification_channel = try(coalesce(var.memory_usable_percent_notification_channel_override, var.notification_channel), "")
