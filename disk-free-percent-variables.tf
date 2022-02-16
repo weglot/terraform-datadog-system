@@ -44,7 +44,7 @@ variable "disk_free_percent_priority" {
   description = "Number from 1 (high) to 5 (low)."
 
   type    = number
-  default = 1
+  default = 2
 }
 
 variable "disk_free_percent_notification_channel_override" {
