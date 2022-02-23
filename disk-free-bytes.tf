@@ -24,10 +24,11 @@ module "disk_free_bytes" {
   notification_channel = try(coalesce(var.disk_free_bytes_notification_channel_override, var.notification_channel), "")
 
   # module level vars
-  env             = var.env
-  service         = var.service
-  additional_tags = var.additional_tags
-  locked          = var.locked
-  name_prefix     = var.name_prefix
-  name_suffix     = var.name_suffix
+  env                  = var.env
+  service              = var.service
+  service_display_name = var.service_display_name
+  additional_tags      = var.additional_tags
+  locked               = var.locked
+  name_prefix          = var.name_prefix
+  name_suffix          = var.name_suffix
 }

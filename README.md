@@ -37,6 +37,7 @@ Monitors:
   * [Datadog Agent](#datadog-agent)
   * [Required Services](#required-services)
   * [Bytes Sent](#bytes-sent)
+  * [Disk In Use Percentage](#disk-in-use-percentage)
   * [Disk Free Percent](#disk-free-percent)
   * [Packets Out Errors](#packets-out-errors)
   * [Memory Free Percent](#memory-free-percent)
@@ -46,6 +47,7 @@ Monitors:
   * [Swap](#swap)
   * [Memory Free Bytes](#memory-free-bytes)
   * [Bytes Received](#bytes-received)
+  * [Memory Usable Percent](#memory-usable-percent)
   * [Disk Iowait](#disk-iowait)
   * [Reboot](#reboot)
   * [CPU](#cpu)
@@ -121,6 +123,34 @@ avg(last_30m):avg:system.net.bytes_sent{tag:xxx} by {host} > 5000000
 | bytes_sent_notification_channel_override | ""       | No       |                                  |
 
 
+## Disk In Use Percentage
+
+Default disabled, only use when disk_free_percent is not giving results
+
+Query:
+```terraform
+avg(last_5m):min:system.disk.in_use{tag:xxx} by {host} * 100 > 90
+```
+
+| variable                                             | default                                  | required | description                      |
+|------------------------------------------------------|------------------------------------------|----------|----------------------------------|
+| disk_in_use_percentage_enabled                       | False                                    | No       |                                  |
+| disk_in_use_percentage_warning                       | 80                                       | No       |                                  |
+| disk_in_use_percentage_critical                      | 90                                       | No       |                                  |
+| disk_in_use_percentage_evaluation_period             | last_5m                                  | No       |                                  |
+| disk_in_use_percentage_note                          | system.disk.in_use is actually a fraction, we've multiplied it by 100 to make it a percentage | No       |                                  |
+| disk_in_use_percentage_docs                          | Default disabled, only use when disk_free_percent is not giving results | No       |                                  |
+| disk_in_use_percentage_filter_override               | ""                                       | No       |                                  |
+| disk_in_use_percentage_alerting_enabled              | True                                     | No       |                                  |
+| disk_in_use_percentage_no_data_timeframe             | None                                     | No       |                                  |
+| disk_in_use_percentage_notify_no_data                | False                                    | No       |                                  |
+| disk_in_use_percentage_ok_threshold                  | None                                     | No       |                                  |
+| disk_in_use_percentage_name_prefix                   | ""                                       | No       |                                  |
+| disk_in_use_percentage_name_suffix                   | ""                                       | No       |                                  |
+| disk_in_use_percentage_priority                      | 2                                        | No       | Number from 1 (high) to 5 (low). |
+| disk_in_use_percentage_notification_channel_override | ""                                       | No       |                                  |
+
+
 ## Disk Free Percent
 
 Query:
@@ -138,7 +168,7 @@ avg(last_5m):100 * min:system.disk.free{tag:xxx} by {host,device} / min:system.d
 | disk_free_percent_docs                          | ""       | No       |                                  |
 | disk_free_percent_filter_override               | ""       | No       |                                  |
 | disk_free_percent_alerting_enabled              | True     | No       |                                  |
-| disk_free_percent_priority                      | 1        | No       | Number from 1 (high) to 5 (low). |
+| disk_free_percent_priority                      | 2        | No       | Number from 1 (high) to 5 (low). |
 | disk_free_percent_notification_channel_override | ""       | No       |                                  |
 
 
@@ -220,7 +250,7 @@ avg(last_5m):min:system.disk.free{tag:xxx} by {host,device} < 10000000000
 | disk_free_bytes_docs                          | ""          | No       |                                  |
 | disk_free_bytes_filter_override               | ""          | No       |                                  |
 | disk_free_bytes_alerting_enabled              | True        | No       |                                  |
-| disk_free_bytes_priority                      | 1           | No       | Number from 1 (high) to 5 (low). |
+| disk_free_bytes_priority                      | 2           | No       | Number from 1 (high) to 5 (low). |
 | disk_free_bytes_notification_channel_override | ""          | No       |                                  |
 
 
@@ -308,6 +338,34 @@ avg(last_30m):avg:system.net.bytes_rcvd{tag:xxx} by {host} > 5000000
 | bytes_received_alerting_enabled              | True     | No       |                                  |
 | bytes_received_priority                      | 3        | No       | Number from 1 (high) to 5 (low). |
 | bytes_received_notification_channel_override | ""       | No       |                                  |
+
+
+## Memory Usable Percent
+
+This looks at system.mem.usable, only use this when memory_free_percent doesn't have data
+
+Query:
+```terraform
+avg(last_5m):100 * min:system.mem.usable{tag:xxx} by {host} / min:system.mem.total{tag:xxx} by {host} < 10
+```
+
+| variable                                            | default                                  | required | description                      |
+|-----------------------------------------------------|------------------------------------------|----------|----------------------------------|
+| memory_usable_percent_enabled                       | False                                    | No       |                                  |
+| memory_usable_percent_warning                       | 20                                       | No       |                                  |
+| memory_usable_percent_critical                      | 10                                       | No       |                                  |
+| memory_usable_percent_evaluation_period             | last_5m                                  | No       |                                  |
+| memory_usable_percent_note                          | ""                                       | No       |                                  |
+| memory_usable_percent_docs                          | This looks at system.mem.usable, only use this when memory_free_percent doesn't have data | No       |                                  |
+| memory_usable_percent_filter_override               | ""                                       | No       |                                  |
+| memory_usable_percent_alerting_enabled              | True                                     | No       |                                  |
+| memory_usable_percent_no_data_timeframe             | None                                     | No       |                                  |
+| memory_usable_percent_notify_no_data                | False                                    | No       |                                  |
+| memory_usable_percent_ok_threshold                  | None                                     | No       |                                  |
+| memory_usable_percent_name_prefix                   | ""                                       | No       |                                  |
+| memory_usable_percent_name_suffix                   | ""                                       | No       |                                  |
+| memory_usable_percent_priority                      | 2                                        | No       | Number from 1 (high) to 5 (low). |
+| memory_usable_percent_notification_channel_override | ""                                       | No       |                                  |
 
 
 ## Disk Iowait
