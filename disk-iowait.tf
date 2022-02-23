@@ -14,20 +14,20 @@ module "disk_io_wait" {
   recovery_message = "IO waits for CPU on ${var.service} Node {{host.name}} Recovered ({{value}} %) "
 
   # monitor level vars
-  enabled            = var.disk_io_wait_enabled
-  alerting_enabled   = var.disk_io_wait_alerting_enabled
-  warning_threshold  = var.disk_io_wait_warning
-  critical_threshold = var.disk_io_wait_critical
-  priority           = min(var.disk_io_wait_priority + var.priority_offset, 5)
-  docs               = var.disk_io_wait_docs
-  note               = var.disk_io_wait_note
+  enabled              = var.disk_io_wait_enabled
+  alerting_enabled     = var.disk_io_wait_alerting_enabled
+  warning_threshold    = var.disk_io_wait_warning
+  critical_threshold   = var.disk_io_wait_critical
+  priority             = min(var.disk_io_wait_priority + var.priority_offset, 5)
+  docs                 = var.disk_io_wait_docs
+  note                 = var.disk_io_wait_note
+  notification_channel = try(coalesce(var.disk_io_wait_notification_channel_override, var.notification_channel), "")
 
   # module level vars
-  env                  = var.env
-  service              = var.service
-  notification_channel = var.notification_channel
-  additional_tags      = var.additional_tags
-  locked               = var.locked
-  name_prefix          = var.name_prefix
-  name_suffix          = var.name_suffix
+  env             = var.env
+  service         = var.service
+  additional_tags = var.additional_tags
+  locked          = var.locked
+  name_prefix     = var.name_prefix
+  name_suffix     = var.name_suffix
 }

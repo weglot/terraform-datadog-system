@@ -18,20 +18,20 @@ module "packets_in_errors" {
   recovery_message = "Packet-in error rate on ${var.service} Node {{host.name}} Recovered ({{value}} %)"
 
   # monitor level vars
-  enabled            = var.packets_in_errors_enabled
-  alerting_enabled   = var.packets_in_errors_alerting_enabled
-  warning_threshold  = var.packets_in_errors_warning
-  critical_threshold = var.packets_in_errors_critical
-  priority           = min(var.packets_in_errors_priority + var.priority_offset, 5)
-  docs               = var.packets_in_errors_docs
-  note               = var.packets_in_errors_note
+  enabled              = var.packets_in_errors_enabled
+  alerting_enabled     = var.packets_in_errors_alerting_enabled
+  warning_threshold    = var.packets_in_errors_warning
+  critical_threshold   = var.packets_in_errors_critical
+  priority             = min(var.packets_in_errors_priority + var.priority_offset, 5)
+  docs                 = var.packets_in_errors_docs
+  note                 = var.packets_in_errors_note
+  notification_channel = try(coalesce(var.packets_in_errors_notification_channel_override, var.notification_channel), "")
 
   # module level vars
-  env                  = var.env
-  service              = var.service
-  notification_channel = var.notification_channel
-  additional_tags      = var.additional_tags
-  locked               = var.locked
-  name_prefix          = var.name_prefix
-  name_suffix          = var.name_suffix
+  env             = var.env
+  service         = var.service
+  additional_tags = var.additional_tags
+  locked          = var.locked
+  name_prefix     = var.name_prefix
+  name_suffix     = var.name_suffix
 }

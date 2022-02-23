@@ -44,3 +44,8 @@ variable "disk_free_bytes_priority" {
   type    = number
   default = 1
 }
+
+variable "disk_free_bytes_notification_channel_override" {
+  type    = string
+  default = ""
+}

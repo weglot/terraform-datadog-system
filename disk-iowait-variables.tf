@@ -46,3 +46,8 @@ variable "disk_io_wait_priority" {
   type    = number
   default = 2
 }
+
+variable "disk_io_wait_notification_channel_override" {
+  type    = string
+  default = ""
+}

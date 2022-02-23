@@ -33,9 +33,14 @@ variable "dd_agent_data_alerting_enabled" {
   default = true
 }
 
-variable "dd_agent_priority" {
+variable "dd_agent_data_priority" {
   description = "Number from 1 (high) to 5 (low)."
 
   type    = number
   default = 2
+}
+
+variable "dd_agent_data_notification_channel_override" {
+  type    = string
+  default = ""
 }

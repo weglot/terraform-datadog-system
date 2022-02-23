@@ -46,3 +46,8 @@ variable "packets_out_errors_priority" {
   type    = number
   default = 3
 }
+
+variable "packets_out_errors_notification_channel_override" {
+  type    = string
+  default = ""
+}

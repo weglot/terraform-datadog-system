@@ -25,20 +25,20 @@ module "dd_agent_data" {
   notify_no_data      = true
 
   # monitor level vars
-  enabled            = var.dd_agent_data_enabled
-  alerting_enabled   = var.dd_agent_data_alerting_enabled
-  critical_threshold = 1
-  warning_threshold  = 1
-  ok_threshold       = 1
-  priority           = min(var.dd_agent_data_priority + var.priority_offset, 5)
-  docs               = var.dd_agent_data_docs
-  note               = var.dd_agent_data_note
+  enabled              = var.dd_agent_data_enabled
+  alerting_enabled     = var.dd_agent_data_alerting_enabled
+  critical_threshold   = 1
+  warning_threshold    = 1
+  ok_threshold         = 1
+  priority             = min(var.dd_agent_data_priority + var.priority_offset, 5)
+  docs                 = var.dd_agent_data_docs
+  note                 = var.dd_agent_data_note
+  notification_channel = try(coalesce(var.dd_agent_data_notification_channel_override, var.notification_channel), "")
 
   # module level vars
   env                  = var.env
   service              = var.service
   service_display_name = var.service_display_name
-  notification_channel = var.notification_channel
   additional_tags      = var.additional_tags
   locked               = var.locked
   name_prefix          = var.name_prefix
