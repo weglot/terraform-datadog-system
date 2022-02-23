@@ -9,7 +9,7 @@ module "reboot" {
   source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.7.0"
 
   name                = "Sytem - Reboot detected"
-  query               = "min(last_5m):derivative(max:system.uptime{${local.reboot_filter}} by {host}) < 0"
+  query               = "min(last_5m):derivative(max:system.uptime{${local.reboot_filter}} by {${var.alert_by}}) < 0"
   alert_message       = "Reboot detected on ${var.service} Node {{host.name}}"
   recovery_message    = ""
   require_full_window = false

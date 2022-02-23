@@ -67,7 +67,7 @@ Not getting monitoring data could mean anything, best is to assume the host is d
 
 Query:
 ```terraform
-avg(${var.dd_agent_evaluation_period}):avg:datadog.agent.running{${local.dd_agent_filter}} by {host} < 1
+avg(${var.dd_agent_evaluation_period}):avg:datadog.agent.running{${local.dd_agent_filter}} by {${var.alert_by}} < 1
 ```
 
 | variable                               | default                                  | required | description                      |
@@ -106,7 +106,7 @@ processes('${each.key}').over('tag:xxx').by('host').rollup('count').last('${look
 
 Query:
 ```terraform
-avg(last_30m):avg:system.net.bytes_sent{tag:xxx} by {host} > 5000000
+avg(last_30m):avg:system.net.bytes_sent{tag:xxx} by {${var.alert_by}} > 5000000
 ```
 
 | variable                                 | default  | required | description                      |
@@ -129,7 +129,7 @@ Default disabled, only use when disk_free_percent is not giving results
 
 Query:
 ```terraform
-avg(last_5m):min:system.disk.in_use{tag:xxx} by {host} * 100 > 90
+avg(last_5m):min:system.disk.in_use{tag:xxx} by {${var.alert_by}} * 100 > 90
 ```
 
 | variable                                             | default                                  | required | description                      |
@@ -178,7 +178,7 @@ Packet errors can severely degrade network performance. A good article about it 
 
 Query:
 ```terraform
-avg(last_15m):100 * max:system.net.packets_out.error{tag:xxx} by {host} / ( max:system.net.packets_out.count{tag:xxx} by {host} + 1000 ) > 1
+avg(last_15m):100 * max:system.net.packets_out.error{tag:xxx} by {${var.alert_by}} / ( max:system.net.packets_out.count{tag:xxx} by {${var.alert_by}} + 1000 ) > 1
 ```
 
 | variable                                         | default                                  | required | description                      |
@@ -199,7 +199,7 @@ avg(last_15m):100 * max:system.net.packets_out.error{tag:xxx} by {host} / ( max:
 
 Query:
 ```terraform
-avg(last_5m):min:system.mem.pct_usable{tag:xxx} by {host} < 10
+avg(last_5m):min:system.mem.pct_usable{tag:xxx} by {${var.alert_by}} < 10
 ```
 
 | variable                                          | default  | required | description                      |
@@ -260,7 +260,7 @@ Packet errors can severely degrade network performance. A good article about it 
 
 Query:
 ```terraform
-avg(last_15m):100 * max:system.net.packets_in.error{tag:xxx} by {host} / ( max:system.net.packets_in.count{tag:xxx} by {host} + 1000 ) > 1
+avg(last_15m):100 * max:system.net.packets_in.error{tag:xxx} by {${var.alert_by}} / ( max:system.net.packets_in.count{tag:xxx} by {${var.alert_by}} + 1000 ) > 1
 ```
 
 | variable                                        | default                                  | required | description                      |
@@ -281,7 +281,7 @@ avg(last_15m):100 * max:system.net.packets_in.error{tag:xxx} by {host} / ( max:s
 
 Query:
 ```terraform
-avg(${var.swap_percent_free_evaluation_period}):min:system.swap.pct_free{${local.swap_percent_free_filter}} by {host} * 100 < ${var.swap_percent_free_critical}
+avg(${var.swap_percent_free_evaluation_period}):min:system.swap.pct_free{${local.swap_percent_free_filter}} by {${var.alert_by}} * 100 < ${var.swap_percent_free_critical}
 ```
 
 | variable                                        | default  | required | description                      |
@@ -302,7 +302,7 @@ avg(${var.swap_percent_free_evaluation_period}):min:system.swap.pct_free{${local
 
 Query:
 ```terraform
-avg(last_5m):min:system.mem.usable{tag:xxx} by {host} < 1000000000
+avg(last_5m):min:system.mem.usable{tag:xxx} by {${var.alert_by}} < 1000000000
 ```
 
 | variable                                        | default    | required | description                                                                          |
@@ -323,7 +323,7 @@ avg(last_5m):min:system.mem.usable{tag:xxx} by {host} < 1000000000
 
 Query:
 ```terraform
-avg(last_30m):avg:system.net.bytes_rcvd{tag:xxx} by {host} > 5000000
+avg(last_30m):avg:system.net.bytes_rcvd{tag:xxx} by {${var.alert_by}} > 5000000
 ```
 
 | variable                                     | default  | required | description                      |
@@ -346,7 +346,7 @@ This looks at system.mem.usable, only use this when memory_free_percent doesn't 
 
 Query:
 ```terraform
-avg(last_5m):100 * min:system.mem.usable{tag:xxx} by {host} / min:system.mem.total{tag:xxx} by {host} < 10
+avg(last_5m):100 * min:system.mem.usable{tag:xxx} by {${var.alert_by}} / min:system.mem.total{tag:xxx} by {${var.alert_by}} < 10
 ```
 
 | variable                                            | default                                  | required | description                      |
@@ -374,7 +374,7 @@ The CPU is mainly waiting for data to be written on disk. This means in general 
 
 Query:
 ```terraform
-avg(${var.disk_io_wait_evaluation_period}):avg:system.cpu.iowait{${local.disk_io_wait_filter}} by {host} > ${var.disk_io_wait_critical}
+avg(${var.disk_io_wait_evaluation_period}):avg:system.cpu.iowait{${local.disk_io_wait_filter}} by {${var.alert_by}} > ${var.disk_io_wait_critical}
 ```
 
 | variable                                   | default                                  | required | description                      |
@@ -395,7 +395,7 @@ avg(${var.disk_io_wait_evaluation_period}):avg:system.cpu.iowait{${local.disk_io
 
 Query:
 ```terraform
-min(last_5m):derivative(max:system.uptime{tag:xxx} by {host}) < 0
+min(last_5m):derivative(max:system.uptime{tag:xxx} by {${var.alert_by}}) < 0
 ```
 
 | variable                             | default  | required | description                      |
@@ -413,7 +413,7 @@ min(last_5m):derivative(max:system.uptime{tag:xxx} by {host}) < 0
 
 Query:
 ```terraform
-avg(last_30m):avg:system.cpu.user{tag:xxx} by {host} + avg:system.cpu.system{tag:xxx} by {host} > 95
+avg(last_30m):avg:system.cpu.user{tag:xxx} by {${var.alert_by}} + avg:system.cpu.system{tag:xxx} by {${var.alert_by}} > 95
 ```
 
 | variable                          | default  | required | description                      |
@@ -446,5 +446,6 @@ avg(last_30m):avg:system.cpu.user{tag:xxx} by {host} + avg:system.cpu.system{tag
 | service_check_include_tags | None     | No       | List of tags for the \"over\" part of the query. Can be either key:value tags or boolean tags.       |
 | service_check_exclude_tags | None     | No       | List of tags for the \"exclude\" part of the query. Can be either key:value tags or boolean tags.    |
 | priority_offset            | 0        | No       | For non production workloads we can +1 on the priorities                                             |
+| alert_by                   | host     | No       | This determines if you want an alert for each value of a tag, ex: by {host} -> generates an alert per host |
 
 

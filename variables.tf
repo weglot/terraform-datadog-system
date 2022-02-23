@@ -63,3 +63,9 @@ variable "priority_offset" {
   description = "For non production workloads we can +1 on the priorities"
   default     = 0
 }
+
+variable "alert_by" {
+  description = "This determines if you want an alert for each value of a tag, ex: by {host} -> generates an alert per host"
+  type        = string
+  default     = "host"
+}

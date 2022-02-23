@@ -9,7 +9,7 @@ module "disk_in_use_percentage" {
   source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.7.0"
 
   name  = "Disk In Use Percentage"
-  query = "avg(${var.disk_in_use_percentage_evaluation_period}):min:system.disk.in_use{${local.disk_in_use_percentage_filter}} by {host} * 100 > ${var.disk_in_use_percentage_critical}"
+  query = "avg(${var.disk_in_use_percentage_evaluation_period}):min:system.disk.in_use{${local.disk_in_use_percentage_filter}} by {${var.alert_by}} * 100 > ${var.disk_in_use_percentage_critical}"
 
   # alert specific configuration
   require_full_window = true

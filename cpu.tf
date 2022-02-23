@@ -9,7 +9,7 @@ module "cpu" {
   source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.7.0"
 
   name             = "System - High CPU"
-  query            = "avg(${var.cpu_evaluation_period}):avg:system.cpu.user{${local.cpu_filter}} by {host} + avg:system.cpu.system{${local.cpu_filter}} by {host} > ${var.cpu_critical}"
+  query            = "avg(${var.cpu_evaluation_period}):avg:system.cpu.user{${local.cpu_filter}} by {${var.alert_by}} + avg:system.cpu.system{${local.cpu_filter}} by {${var.alert_by}} > ${var.cpu_critical}"
   alert_message    = "High CPU usage on ${var.service} Node {{host.name}} ({{value}} %)"
   recovery_message = "CPU usage on Vault ${var.service} {{host.name}} Recovered ({{value}} %)"
 
