@@ -12,8 +12,8 @@ module "required_services" {
   name                = "System - Service ${lookup(each.value, "display_name", title(each.key))}"
   type                = "process alert"
   query               = "processes('${each.key}').over('${local.required_services_filter}').by('host').rollup('count').last('${lookup(each.value, "freshness_duration", var.required_services_default_freshness_duration)}') < ${lookup(each.value, "process_count", 1)}"
-  alert_message       = "Service ${lookup(each.value, "display_name", "")} ${each.key} not running on ${var.service} Node {{host.name}}"
-  recovery_message    = "${each.key} is back on ${var.service} Node {{host.name}}"
+  alert_message       = "Service ${lookup(each.value, "display_name", "")} ${each.key} not running on ${var.service} Node {{${var.alert_by}.name}}"
+  recovery_message    = "${each.key} is back on ${var.service} Node {{${var.alert_by}.name}}"
   require_full_window = false
 
   # monitor level vars

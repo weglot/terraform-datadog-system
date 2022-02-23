@@ -13,8 +13,8 @@ module "disk_in_use_percentage" {
 
   # alert specific configuration
   require_full_window = true
-  alert_message       = "Disk usage on CloudAMQP Node {{host.name}} has dropped below {{threshold}} ({{value}}%) available"
-  recovery_message    = "Disk usage on CloudAMQP Node {{host.name}} has recovered ({{value}}%) available"
+  alert_message       = "Disk usage on CloudAMQP Node {{${var.alert_by}.name}} has dropped below {{threshold}} ({{value}}%) available"
+  recovery_message    = "Disk usage on CloudAMQP Node {{${var.alert_by}.name}} has recovered ({{value}}%) available"
 
   # monitor level vars
   enabled              = var.disk_in_use_percentage_enabled

@@ -10,8 +10,8 @@ module "disk_io_wait" {
 
   name             = "System - Disk IO Wait"
   query            = "avg(${var.disk_io_wait_evaluation_period}):avg:system.cpu.iowait{${local.disk_io_wait_filter}} by {${var.alert_by}} > ${var.disk_io_wait_critical}"
-  alert_message    = "High IO waits for CPU on ${var.service} Node {{host.name}} ({{value}} %)"
-  recovery_message = "IO waits for CPU on ${var.service} Node {{host.name}} Recovered ({{value}} %) "
+  alert_message    = "High IO waits for CPU on ${var.service} Node {{${var.alert_by}.name}} ({{value}} %)"
+  recovery_message = "IO waits for CPU on ${var.service} Node {{${var.alert_by}.name}} Recovered ({{value}} %) "
 
   # monitor level vars
   enabled              = var.disk_io_wait_enabled

@@ -10,8 +10,8 @@ module "memory_free_bytes" {
 
   name             = "System - Memory Free Bytes"
   query            = "avg(${var.memory_free_bytes_evaluation_period}):min:system.mem.usable{${local.memory_free_bytes_filter}} by {${var.alert_by}} < ${var.memory_free_bytes_critical}"
-  alert_message    = "Available memory on ${var.service} Node {{host.name}} has dropped below {{threshold}} and has {{value}} available"
-  recovery_message = "Available memory on ${var.service} Node {{host.name}} has recovered {{value}}"
+  alert_message    = "Available memory on ${var.service} Node {{${var.alert_by}.name}} has dropped below {{threshold}} and has {{value}} available"
+  recovery_message = "Available memory on ${var.service} Node {{${var.alert_by}.name}} has recovered {{value}}"
 
   # monitor level vars
   enabled              = var.memory_free_bytes_enabled

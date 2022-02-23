@@ -10,8 +10,8 @@ module "bytes_received" {
 
   name             = "System - Bytes received"
   query            = "avg(${var.bytes_received_evaluation_period}):avg:system.net.bytes_rcvd{${local.bytes_received_filter}} by {${var.alert_by}} > ${var.bytes_received_critical}"
-  alert_message    = "High ingress traffic on ${var.service} Node {{host.name}} ({{value}})"
-  recovery_message = "Ingress traffic on ${var.service} Node {{host.name}} Recovered ({{value}})"
+  alert_message    = "High ingress traffic on ${var.service} Node {{${var.alert_by}.name}} ({{value}})"
+  recovery_message = "Ingress traffic on ${var.service} Node {{${var.alert_by}.name}} Recovered ({{value}})"
 
   # monitor level vars
   enabled              = var.bytes_received_enabled

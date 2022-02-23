@@ -10,8 +10,8 @@ module "memory_free_percent" {
 
   name             = "System - Memory Free Percent"
   query            = "avg(${var.memory_free_percent_evaluation_period}):min:system.mem.pct_usable{${local.memory_free_percent_filter}} by {${var.alert_by}} < ${var.memory_free_percent_critical}"
-  alert_message    = "Available memory on ${var.service} Node {{host.name}} has dropped below {{threshold}} and has {{value}}% available"
-  recovery_message = "Available memory on ${var.service} Node {{host.name}} has recovered {{value}}%"
+  alert_message    = "Available memory on ${var.service} Node {{${var.alert_by}.name}} has dropped below {{threshold}} and has {{value}}% available"
+  recovery_message = "Available memory on ${var.service} Node {{${var.alert_by}.name}} has recovered {{value}}%"
 
   # monitor level vars
   enabled              = var.memory_free_percent_enabled

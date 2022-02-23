@@ -13,8 +13,8 @@ module "memory_usable_percent" {
 
   # alert specific configuration
   require_full_window = true
-  alert_message       = "Usable memory on CloudAMQP Node {{host.name}} has dropped below {{threshold}} and has {{value}}% available"
-  recovery_message    = "Usable memory on CloudAMQP Node {{host.name}} has recovered {{value}}%"
+  alert_message       = "Usable memory on CloudAMQP Node {{${var.alert_by}.name}} has dropped below {{threshold}} and has {{value}}% available"
+  recovery_message    = "Usable memory on CloudAMQP Node {{${var.alert_by}.name}} has recovered {{value}}%"
 
   # monitor level vars
   enabled              = var.memory_usable_percent_enabled
