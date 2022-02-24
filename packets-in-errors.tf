@@ -13,9 +13,9 @@ module "packets_in_errors" {
 
   name = "System - Packet In Errors"
   # +1000 helps out filtering low packet rates, this prevents a handful of packet errors to skew the percentage when for example only 100 packets are received/sent
-  query            = "avg(${var.packets_in_errors_evaluation_period}):100 * max:system.net.packets_in.error{${local.packets_in_errors_filter}} by {host} / ( max:system.net.packets_in.count{${local.packets_in_errors_filter}} by {host} + 1000 ) > ${var.packets_in_errors_critical}"
-  alert_message    = "High rate of packet-in errors on ${var.service} Node {{host.name}} ({{value}} %)"
-  recovery_message = "Packet-in error rate on ${var.service} Node {{host.name}} Recovered ({{value}} %)"
+  query            = "avg(${var.packets_in_errors_evaluation_period}):100 * max:system.net.packets_in.error{${local.packets_in_errors_filter}} by {${var.alert_by}} / ( max:system.net.packets_in.count{${local.packets_in_errors_filter}} by {${var.alert_by}} + 1000 ) > ${var.packets_in_errors_critical}"
+  alert_message    = "High rate of packet-in errors on ${var.service} Node {{${var.alert_by}.name}} ({{value}} %)"
+  recovery_message = "Packet-in error rate on ${var.service} Node {{${var.alert_by}.name}} Recovered ({{value}} %)"
 
   # monitor level vars
   enabled              = var.packets_in_errors_enabled

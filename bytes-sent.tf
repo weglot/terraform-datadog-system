@@ -9,9 +9,9 @@ module "bytes_sent" {
   source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.7.0"
 
   name             = "System - Bytes sent"
-  query            = "avg(${var.bytes_sent_evaluation_period}):avg:system.net.bytes_sent{${local.bytes_sent_filter}} by {host} > ${var.bytes_sent_critical}"
-  alert_message    = "High egress traffic on ${var.service} Node {{host.name}} ({{value}})"
-  recovery_message = "High egress traffic on ${var.service} Node {{host.name}} Recovered ({{value}})"
+  query            = "avg(${var.bytes_sent_evaluation_period}):avg:system.net.bytes_sent{${local.bytes_sent_filter}} by {${var.alert_by}} > ${var.bytes_sent_critical}"
+  alert_message    = "High egress traffic on ${var.service} Node {{${var.alert_by}.name}} ({{value}})"
+  recovery_message = "High egress traffic on ${var.service} Node {{${var.alert_by}.name}} Recovered ({{value}})"
 
   # monitor level vars
   enabled              = var.bytes_sent_enabled

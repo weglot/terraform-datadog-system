@@ -9,12 +9,12 @@ module "memory_usable_percent" {
   source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.7.0"
 
   name  = "Memory Usable Percent"
-  query = "avg(${var.memory_usable_percent_evaluation_period}):100 * min:system.mem.usable{${local.memory_usable_percent_filter}} by {host} / min:system.mem.total{${local.memory_usable_percent_filter}} by {host} < ${var.memory_usable_percent_critical}"
+  query = "avg(${var.memory_usable_percent_evaluation_period}):100 * min:system.mem.usable{${local.memory_usable_percent_filter}} by {${var.alert_by}} / min:system.mem.total{${local.memory_usable_percent_filter}} by {${var.alert_by}} < ${var.memory_usable_percent_critical}"
 
   # alert specific configuration
   require_full_window = true
-  alert_message       = "Usable memory on CloudAMQP Node {{host.name}} has dropped below {{threshold}} and has {{value}}% available"
-  recovery_message    = "Usable memory on CloudAMQP Node {{host.name}} has recovered {{value}}%"
+  alert_message       = "Usable memory on CloudAMQP Node {{${var.alert_by}.name}} has dropped below {{threshold}} and has {{value}}% available"
+  recovery_message    = "Usable memory on CloudAMQP Node {{${var.alert_by}.name}} has recovered {{value}}%"
 
   # monitor level vars
   enabled              = var.memory_usable_percent_enabled

@@ -17,8 +17,8 @@ module "dd_agent_data" {
     []
   )
 
-  alert_message    = "Datadog Agent not running is not running on ${var.service} Node {{host.name}} please check."
-  recovery_message = "Datadog Agent is back on ${var.service} Node {{host.name}}"
+  alert_message    = "Datadog Agent not running is not running on ${var.service} Node {{${var.alert_by}.name}} please check."
+  recovery_message = "Datadog Agent is back on ${var.service} Node {{${var.alert_by}.name}}"
 
   require_full_window = false
   no_data_timeframe   = 2
