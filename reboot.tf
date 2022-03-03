@@ -6,7 +6,8 @@ locals {
 }
 
 module "reboot" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.7.0"
+  source  = "kabisa/generic-monitor/datadog"
+  version = "0.7.1"
 
   name                = "Sytem - Reboot detected"
   query               = "min(last_5m):derivative(max:system.uptime{${local.reboot_filter}} by {${var.alert_by}}) < 0"

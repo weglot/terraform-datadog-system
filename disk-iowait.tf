@@ -6,7 +6,8 @@ locals {
 }
 
 module "disk_io_wait" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.7.0"
+  source  = "kabisa/generic-monitor/datadog"
+  version = "0.7.1"
 
   name             = "System - Disk IO Wait"
   query            = "avg(${var.disk_io_wait_evaluation_period}):avg:system.cpu.iowait{${local.disk_io_wait_filter}} by {${var.alert_by}} > ${var.disk_io_wait_critical}"

@@ -6,7 +6,8 @@ locals {
 }
 
 module "disk_free_bytes" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.7.0"
+  source  = "kabisa/generic-monitor/datadog"
+  version = "0.7.1"
 
   name             = "System - Disk Free (bytes)"
   query            = "avg(${var.disk_free_bytes_evaluation_period}):min:system.disk.free{${local.disk_free_bytes_filter}} by {host,device} < ${var.disk_free_bytes_critical}"
