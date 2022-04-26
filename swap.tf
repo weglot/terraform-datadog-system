@@ -6,7 +6,8 @@ locals {
 }
 
 module "swap_percent_free" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.7.0"
+  source  = "kabisa/generic-monitor/datadog"
+  version = "0.7.1"
 
   name                = "System - Swap percent free"
   query               = "avg(${var.swap_percent_free_evaluation_period}):min:system.swap.pct_free{${local.swap_percent_free_filter}} by {${var.alert_by}} * 100 < ${var.swap_percent_free_critical}"

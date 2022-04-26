@@ -6,7 +6,8 @@ locals {
 }
 
 module "memory_usable_percent" {
-  source = "git@github.com:kabisa/terraform-datadog-generic-monitor.git?ref=0.7.0"
+  source  = "kabisa/generic-monitor/datadog"
+  version = "0.7.1"
 
   name  = "Memory Usable Percent"
   query = "avg(${var.memory_usable_percent_evaluation_period}):100 * min:system.mem.usable{${local.memory_usable_percent_filter}} by {${var.alert_by}} / min:system.mem.total{${local.memory_usable_percent_filter}} by {${var.alert_by}} < ${var.memory_usable_percent_critical}"
