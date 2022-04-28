@@ -199,7 +199,7 @@ avg(last_15m):100 * max:system.net.packets_out.error{tag:xxx} by {${var.alert_by
 
 Query:
 ```terraform
-avg(last_5m):min:system.mem.pct_usable{tag:xxx} by {${var.alert_by}} < 10
+avg(last_5m):min:system.mem.pct_usable{tag:xxx} by {${var.alert_by}} * 100 < 10
 ```
 
 | variable                                          | default  | required | description                      |
