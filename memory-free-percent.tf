@@ -9,8 +9,9 @@ module "memory_free_percent" {
   source  = "kabisa/generic-monitor/datadog"
   version = "0.7.1"
 
-  name             = "System - Memory Free Percent"
-  query            = "avg(${var.memory_free_percent_evaluation_period}):min:system.mem.pct_usable{${local.memory_free_percent_filter}} by {${var.alert_by}} < ${var.memory_free_percent_critical}"
+  name = "System - Memory Free Percent"
+  # Note: system.mem.pct_usable is actually a faction not a percentage
+  query            = "avg(${var.memory_free_percent_evaluation_period}):min:system.mem.pct_usable{${local.memory_free_percent_filter}} by {${var.alert_by}} * 100 < ${var.memory_free_percent_critical}"
   alert_message    = "Available memory on ${var.service} Node {{${var.alert_by}.name}} has dropped below {{threshold}} and has {{value}}% available"
   recovery_message = "Available memory on ${var.service} Node {{${var.alert_by}.name}} has recovered {{value}}%"
 
