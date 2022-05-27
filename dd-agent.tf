@@ -7,7 +7,7 @@ locals {
 
 module "dd_agent" {
   source  = "kabisa/generic-monitor/datadog"
-  version = "0.7.1"
+  version = "0.7.5"
 
   name             = "System - Datadog agent not running"
   query            = "avg(${var.dd_agent_evaluation_period}):avg:datadog.agent.running{${local.dd_agent_filter}} by {${var.alert_by}} < 1"

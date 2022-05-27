@@ -7,7 +7,7 @@ locals {
 
 module "memory_free_percent" {
   source  = "kabisa/generic-monitor/datadog"
-  version = "0.7.1"
+  version = "0.7.5"
 
   name = "System - Memory Free Percent"
   # Note: system.mem.pct_usable is actually a faction not a percentage

@@ -7,7 +7,7 @@ locals {
 
 module "memory_free_bytes" {
   source  = "kabisa/generic-monitor/datadog"
-  version = "0.7.1"
+  version = "0.7.5"
 
   name             = "System - Memory Free Bytes"
   query            = "avg(${var.memory_free_bytes_evaluation_period}):min:system.mem.usable{${local.memory_free_bytes_filter}} by {${var.alert_by}} < ${var.memory_free_bytes_critical}"
