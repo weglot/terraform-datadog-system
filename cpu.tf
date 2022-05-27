@@ -7,7 +7,7 @@ locals {
 
 module "cpu" {
   source  = "kabisa/generic-monitor/datadog"
-  version = "0.7.1"
+  version = "0.7.5"
 
   name             = "System - High CPU"
   query            = "avg(${var.cpu_evaluation_period}):avg:system.cpu.user{${local.cpu_filter}} by {${var.alert_by}} + avg:system.cpu.system{${local.cpu_filter}} by {${var.alert_by}} > ${var.cpu_critical}"

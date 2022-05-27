@@ -7,7 +7,7 @@ locals {
 
 module "required_services" {
   source  = "kabisa/generic-monitor/datadog"
-  version = "0.7.1"
+  version = "0.7.5"
 
   for_each = var.required_services_config
 

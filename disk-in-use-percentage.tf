@@ -7,7 +7,7 @@ locals {
 
 module "disk_in_use_percentage" {
   source  = "kabisa/generic-monitor/datadog"
-  version = "0.7.1"
+  version = "0.7.5"
 
   name  = "Disk In Use Percentage"
   query = "avg(${var.disk_in_use_percentage_evaluation_period}):min:system.disk.in_use{${local.disk_in_use_percentage_filter}} by {${var.alert_by}} * 100 > ${var.disk_in_use_percentage_critical}"

@@ -1,6 +1,6 @@
 module "dd_agent_data" {
   source  = "kabisa/service-check-monitor/datadog"
-  version = "1.4.0"
+  version = "1.4.1"
 
   name        = "System - Datadog data missing"
   metric_name = "datadog.agent.up"
