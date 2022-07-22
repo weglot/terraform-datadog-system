@@ -31,9 +31,6 @@ module "system" {
   service_check_include_tags = ["host:myserver"]
 }
 
-
-
-
 ```
 
 
