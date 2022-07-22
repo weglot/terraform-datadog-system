@@ -7,7 +7,7 @@ locals {
 
 module "bytes_received" {
   source  = "kabisa/generic-monitor/datadog"
-  version = "0.7.5"
+  version = "1.0.0"
 
   name             = "System - Bytes received"
   query            = "avg(${var.bytes_received_evaluation_period}):avg:system.net.bytes_rcvd{${local.bytes_received_filter}} by {${var.alert_by}} > ${var.bytes_received_critical}"
