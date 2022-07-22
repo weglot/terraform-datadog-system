@@ -7,7 +7,7 @@ locals {
 
 module "bytes_sent" {
   source  = "kabisa/generic-monitor/datadog"
-  version = "0.7.5"
+  version = "1.0.0"
 
   name             = "System - Bytes sent"
   query            = "avg(${var.bytes_sent_evaluation_period}):avg:system.net.bytes_sent{${local.bytes_sent_filter}} by {${var.alert_by}} > ${var.bytes_sent_critical}"

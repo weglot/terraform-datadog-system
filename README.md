@@ -31,9 +31,6 @@ module "system" {
   service_check_include_tags = ["host:myserver"]
 }
 
-
-
-
 ```
 
 
@@ -43,22 +40,22 @@ Monitors:
 
 | Monitor name    | Default enabled | Priority | Query                  |
 |-----------------|------|----|------------------------|
-| [Bytes Received](#bytes-received) | True | 3  | avg(last_30m):avg:system.net.bytes_rcvd{tag:xxx} by {${var.alert_by}} > 5000000 |
-| [Bytes Sent](#bytes-sent) | True | 3  | avg(last_30m):avg:system.net.bytes_sent{tag:xxx} by {${var.alert_by}} > 5000000 |
-| [CPU](#cpu)     | True | 2  | avg(last_30m):avg:system.cpu.user{tag:xxx} by {${var.alert_by}} + avg:system.cpu.system{tag:xxx} by {${var.alert_by}} > 95 |
-| [Datadog Agent](#datadog-agent) | True | 2  | avg(${var.dd_agent_evaluation_period}):avg:datadog.agent.running{${local.dd_agent_filter}} by {${var.alert_by}} < 1 |
-| [Disk Free Bytes](#disk-free-bytes) | False | 2  | avg(last_5m):min:system.disk.free{tag:xxx} by {host,device} < 10000000000 |
-| [Disk Free Percent](#disk-free-percent) | True | 2  | avg(last_5m):100 * min:system.disk.free{tag:xxx} by {host,device} / min:system.disk.total{tag:xxx} by {host,device} < 10 |
-| [Disk In Use Percentage](#disk-in-use-percentage) | False | 2  | avg(last_5m):min:system.disk.in_use{tag:xxx} by {${var.alert_by}} * 100 > 90 |
-| [Disk Iowait](#disk-iowait) | True | 2  | avg(${var.disk_io_wait_evaluation_period}):avg:system.cpu.iowait{${local.disk_io_wait_filter}} by {${var.alert_by}} > ${var.disk_io_wait_critical} |
-| [Memory Free Bytes](#memory-free-bytes) | False | 2  | avg(last_5m):min:system.mem.usable{tag:xxx} by {${var.alert_by}} < 1000000000 |
-| [Memory Free Percent](#memory-free-percent) | True | 2  | avg(last_5m):min:system.mem.pct_usable{tag:xxx} by {${var.alert_by}} * 100 < 10 |
-| [Memory Usable Percent](#memory-usable-percent) | False | 2  | avg(last_5m):100 * min:system.mem.usable{tag:xxx} by {${var.alert_by}} / min:system.mem.total{tag:xxx} by {${var.alert_by}} < 10 |
-| [Packets In Errors](#packets-in-errors) | True | 3  | avg(last_15m):100 * max:system.net.packets_in.error{tag:xxx} by {${var.alert_by}} / ( max:system.net.packets_in.count{tag:xxx} by {${var.alert_by}} + 1000 ) > 1 |
-| [Packets Out Errors](#packets-out-errors) | True | 3  | avg(last_15m):100 * max:system.net.packets_out.error{tag:xxx} by {${var.alert_by}} / ( max:system.net.packets_out.count{tag:xxx} by {${var.alert_by}} + 1000 ) > 1 |
-| [Reboot](#reboot) | True | 3  | min(last_5m):derivative(max:system.uptime{tag:xxx} by {${var.alert_by}}) < 0 |
-| [Required Services](#required-services) | True | 2  | processes('${each.key}').over('tag:xxx').by('host').rollup('count').last('${lookup(each.value, "freshness_duration", var.required_services_default_freshness_duration)}') < ${lookup(each.value, "process_count", 1)} |
-| [Swap](#swap)   | True | 3  | avg(${var.swap_percent_free_evaluation_period}):min:system.swap.pct_free{${local.swap_percent_free_filter}} by {${var.alert_by}} * 100 < ${var.swap_percent_free_critical} |
+| [Bytes Received](#bytes-received) | True | 3  | `avg(last_30m):avg:system.net.bytes_rcvd{tag:xxx} by {${var.alert_by}} > 5000000` |
+| [Bytes Sent](#bytes-sent) | True | 3  | `avg(last_30m):avg:system.net.bytes_sent{tag:xxx} by {${var.alert_by}} > 5000000` |
+| [CPU](#cpu)     | True | 2  | `avg(last_30m):avg:system.cpu.user{tag:xxx} by {${var.alert_by}} + avg:system.cpu.system{tag:xxx} by {${var.alert_by}} > 95` |
+| [Datadog Agent](#datadog-agent) | True | 2  | `avg(${var.dd_agent_evaluation_period}):avg:datadog.agent.running{${local.dd_agent_filter}} by {${var.alert_by}} < 1` |
+| [Disk Free Bytes](#disk-free-bytes) | False | 2  | `avg(last_5m):min:system.disk.free{tag:xxx} by {host,device} < 10000000000` |
+| [Disk Free Percent](#disk-free-percent) | True | 2  | `avg(last_5m):100 * min:system.disk.free{tag:xxx} by {host,device} / min:system.disk.total{tag:xxx} by {host,device} < 10` |
+| [Disk In Use Percentage](#disk-in-use-percentage) | False | 2  | `avg(last_5m):min:system.disk.in_use{tag:xxx} by {${var.alert_by}} * 100 > 90` |
+| [Disk Iowait](#disk-iowait) | True | 2  | `avg(${var.disk_io_wait_evaluation_period}):avg:system.cpu.iowait{${local.disk_io_wait_filter}} by {${var.alert_by}} > ${var.disk_io_wait_critical}` |
+| [Memory Free Bytes](#memory-free-bytes) | False | 2  | `avg(last_5m):min:system.mem.usable{tag:xxx} by {${var.alert_by}} < 1000000000` |
+| [Memory Free Percent](#memory-free-percent) | True | 2  | `avg(last_5m):min:system.mem.pct_usable{tag:xxx} by {${var.alert_by}} * 100 < 10` |
+| [Memory Usable Percent](#memory-usable-percent) | False | 2  | `avg(last_5m):100 * min:system.mem.usable{tag:xxx} by {${var.alert_by}} / min:system.mem.total{tag:xxx} by {${var.alert_by}} < 10` |
+| [Packets In Errors](#packets-in-errors) | True | 3  | `avg(last_15m):100 * max:system.net.packets_in.error{tag:xxx} by {${var.alert_by}} / ( max:system.net.packets_in.count{tag:xxx} by {${var.alert_by}} + 1000 ) > 1` |
+| [Packets Out Errors](#packets-out-errors) | True | 3  | `avg(last_15m):100 * max:system.net.packets_out.error{tag:xxx} by {${var.alert_by}} / ( max:system.net.packets_out.count{tag:xxx} by {${var.alert_by}} + 1000 ) > 1` |
+| [Reboot](#reboot) | True | 3  | `min(last_5m):derivative(max:system.uptime{tag:xxx} by {${var.alert_by}}) < 0` |
+| [Required Services](#required-services) | True | 2  | `processes('${each.key}').over('tag:xxx').by('host').rollup('count').last('${lookup(each.value, "freshness_duration", var.required_services_default_freshness_duration)}') < ${lookup(each.value, "process_count", 1)}` |
+| [Swap](#swap)   | True | 3  | `avg(${var.swap_percent_free_evaluation_period}):min:system.swap.pct_free{${local.swap_percent_free_filter}} by {${var.alert_by}} * 100 < ${var.swap_percent_free_critical}` |
 
 # Getting started developing
 [pre-commit](http://pre-commit.com/) was used to do Terraform linting and validating.

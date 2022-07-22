@@ -10,7 +10,7 @@ locals {
 
 module "packets_in_errors" {
   source  = "kabisa/generic-monitor/datadog"
-  version = "0.7.5"
+  version = "1.0.0"
 
   name = "System - Packet In Errors"
   # +1000 helps out filtering low packet rates, this prevents a handful of packet errors to skew the percentage when for example only 100 packets are received/sent
