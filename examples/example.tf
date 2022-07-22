@@ -1,3 +1,4 @@
+# tflint-ignore: terraform_module_version
 module "system" {
   source = "kabisa/system/datadog"
 
@@ -7,3 +8,6 @@ module "system" {
   filter_str                 = "host:myserver"
   service_check_include_tags = ["host:myserver"]
 }
+
+
+
