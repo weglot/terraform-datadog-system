@@ -1,6 +1,6 @@
 variable "bytes_sent_enabled" {
   type    = bool
-  default = true
+  default = false
 }
 
 variable "bytes_sent_warning" {
