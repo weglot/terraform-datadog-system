@@ -1,6 +1,6 @@
 variable "bytes_received_enabled" {
   type    = bool
-  default = true
+  default = false
 }
 
 variable "bytes_received_warning" {
