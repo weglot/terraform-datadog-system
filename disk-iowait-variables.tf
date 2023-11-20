@@ -44,7 +44,7 @@ variable "disk_io_wait_priority" {
   description = "Number from 1 (high) to 5 (low)."
 
   type    = number
-  default = 2
+  default = 3
 }
 
 variable "disk_io_wait_notification_channel_override" {
