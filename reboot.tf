@@ -9,7 +9,7 @@ module "reboot" {
   source  = "kabisa/generic-monitor/datadog"
   version = "1.0.0"
 
-  name                = "Sytem - Reboot detected"
+  name                = "System - Reboot detected"
   query               = "min(last_5m):derivative(max:system.uptime{${local.reboot_filter}} by {${var.alert_by}}) < 0"
   alert_message       = "Reboot detected on ${var.service} Node {{${var.alert_by}.name}}"
   recovery_message    = ""
