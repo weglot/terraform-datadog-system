@@ -61,6 +61,7 @@ variable "service_check_exclude_tags" {
 
 variable "priority_offset" {
   description = "For non production workloads we can +1 on the priorities"
+  type        = number
   default     = 0
 }
 
