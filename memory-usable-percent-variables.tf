@@ -40,31 +40,6 @@ variable "memory_usable_percent_alerting_enabled" {
   default = true
 }
 
-variable "memory_usable_percent_no_data_timeframe" {
-  type    = number
-  default = null
-}
-
-variable "memory_usable_percent_notify_no_data" {
-  type    = bool
-  default = false
-}
-
-variable "memory_usable_percent_ok_threshold" {
-  type    = number
-  default = null
-}
-
-variable "memory_usable_percent_name_prefix" {
-  type    = string
-  default = ""
-}
-
-variable "memory_usable_percent_name_suffix" {
-  type    = string
-  default = ""
-}
-
 variable "memory_usable_percent_priority" {
   description = "Number from 1 (high) to 5 (low)."
 

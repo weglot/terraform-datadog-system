@@ -13,11 +13,6 @@ variable "dd_agent_data_docs" {
   default = "Not getting monitoring data could mean anything, best is to assume the host is down and consider this a major event"
 }
 
-variable "dd_agent_data_filter_override" {
-  type    = string
-  default = ""
-}
-
 variable "dd_agent_data_include_tags_override" {
   type    = list(string)
   default = null

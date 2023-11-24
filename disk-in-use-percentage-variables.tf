@@ -40,31 +40,6 @@ variable "disk_in_use_percentage_alerting_enabled" {
   default = true
 }
 
-variable "disk_in_use_percentage_no_data_timeframe" {
-  type    = number
-  default = null
-}
-
-variable "disk_in_use_percentage_notify_no_data" {
-  type    = bool
-  default = false
-}
-
-variable "disk_in_use_percentage_ok_threshold" {
-  type    = number
-  default = null
-}
-
-variable "disk_in_use_percentage_name_prefix" {
-  type    = string
-  default = ""
-}
-
-variable "disk_in_use_percentage_name_suffix" {
-  type    = string
-  default = ""
-}
-
 variable "disk_in_use_percentage_priority" {
   description = "Number from 1 (high) to 5 (low)."
 
