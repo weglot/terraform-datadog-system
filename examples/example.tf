@@ -1,4 +1,3 @@
-# tflint-ignore: terraform_module_version
 module "system" {
   source = "kabisa/system/datadog"
 
