@@ -40,14 +40,15 @@ Monitors:
 
 | Monitor name    | Default enabled | Priority | Query                  |
 |-----------------|------|----|------------------------|
-| [Bytes Received](#bytes-received) | True | 3  | `avg(last_30m):avg:system.net.bytes_rcvd{tag:xxx} by {${var.alert_by}} > 5000000` |
-| [Bytes Sent](#bytes-sent) | True | 3  | `avg(last_30m):avg:system.net.bytes_sent{tag:xxx} by {${var.alert_by}} > 5000000` |
+| [Bytes Received](#bytes-received) | False | 3  | `avg(last_30m):avg:system.net.bytes_rcvd{tag:xxx} by {${var.alert_by}} > 5000000` |
+| [Bytes Sent](#bytes-sent) | False | 3  | `avg(last_30m):avg:system.net.bytes_sent{tag:xxx} by {${var.alert_by}} > 5000000` |
+| [CPU Stolen](#cpu-stolen) | True | 3  | `avg(last_15m):avg:system.cpu.stolen{tag:xxx} by {${var.alert_by}} > 10` |
 | [CPU](#cpu)     | True | 2  | `avg(last_30m):avg:system.cpu.user{tag:xxx} by {${var.alert_by}} + avg:system.cpu.system{tag:xxx} by {${var.alert_by}} > 95` |
 | [Datadog Agent](#datadog-agent) | True | 2  | `avg(${var.dd_agent_evaluation_period}):avg:datadog.agent.running{${local.dd_agent_filter}} by {${var.alert_by}} < 1` |
 | [Disk Free Bytes](#disk-free-bytes) | False | 2  | `avg(last_5m):min:system.disk.free{tag:xxx} by {host,device} < 10000000000` |
 | [Disk Free Percent](#disk-free-percent) | True | 2  | `avg(last_5m):100 * min:system.disk.free{tag:xxx} by {host,device} / min:system.disk.total{tag:xxx} by {host,device} < 10` |
 | [Disk In Use Percentage](#disk-in-use-percentage) | False | 2  | `avg(last_5m):min:system.disk.in_use{tag:xxx} by {${var.alert_by}} * 100 > 90` |
-| [Disk Iowait](#disk-iowait) | True | 2  | `avg(${var.disk_io_wait_evaluation_period}):avg:system.cpu.iowait{${local.disk_io_wait_filter}} by {${var.alert_by}} > ${var.disk_io_wait_critical}` |
+| [Disk Iowait](#disk-iowait) | True | 3  | `avg(${var.disk_io_wait_evaluation_period}):avg:system.cpu.iowait{${local.disk_io_wait_filter}} by {${var.alert_by}} > ${var.disk_io_wait_critical}` |
 | [Memory Free Bytes](#memory-free-bytes) | False | 2  | `avg(last_5m):min:system.mem.usable{tag:xxx} by {${var.alert_by}} < 1000000000` |
 | [Memory Free Percent](#memory-free-percent) | True | 2  | `avg(last_5m):min:system.mem.pct_usable{tag:xxx} by {${var.alert_by}} * 100 < 10` |
 | [Memory Usable Percent](#memory-usable-percent) | False | 2  | `avg(last_5m):100 * min:system.mem.usable{tag:xxx} by {${var.alert_by}} / min:system.mem.total{tag:xxx} by {${var.alert_by}} < 10` |
@@ -74,7 +75,7 @@ avg(last_30m):avg:system.net.bytes_rcvd{tag:xxx} by {${var.alert_by}} > 5000000
 
 | variable                                     | default  | required | description                      |
 |----------------------------------------------|----------|----------|----------------------------------|
-| bytes_received_enabled                       | True     | No       |                                  |
+| bytes_received_enabled                       | False    | No       |                                  |
 | bytes_received_warning                       | 4000000  | No       |                                  |
 | bytes_received_critical                      | 5000000  | No       |                                  |
 | bytes_received_evaluation_period             | last_30m | No       |                                  |
@@ -95,7 +96,7 @@ avg(last_30m):avg:system.net.bytes_sent{tag:xxx} by {${var.alert_by}} > 5000000
 
 | variable                                 | default  | required | description                      |
 |------------------------------------------|----------|----------|----------------------------------|
-| bytes_sent_enabled                       | True     | No       |                                  |
+| bytes_sent_enabled                       | False    | No       |                                  |
 | bytes_sent_warning                       | 4000000  | No       |                                  |
 | bytes_sent_critical                      | 5000000  | No       |                                  |
 | bytes_sent_evaluation_period             | last_30m | No       |                                  |
@@ -105,6 +106,27 @@ avg(last_30m):avg:system.net.bytes_sent{tag:xxx} by {${var.alert_by}} > 5000000
 | bytes_sent_alerting_enabled              | True     | No       |                                  |
 | bytes_sent_priority                      | 3        | No       | Number from 1 (high) to 5 (low). |
 | bytes_sent_notification_channel_override | ""       | No       |                                  |
+
+
+## CPU Stolen
+
+Query:
+```terraform
+avg(last_15m):avg:system.cpu.stolen{tag:xxx} by {${var.alert_by}} > 10
+```
+
+| variable                                 | default  | required | description                      |
+|------------------------------------------|----------|----------|----------------------------------|
+| cpu_stolen_enabled                       | True     | No       |                                  |
+| cpu_stolen_warning                       | 5        | No       |                                  |
+| cpu_stolen_critical                      | 10       | No       |                                  |
+| cpu_stolen_evaluation_period             | last_15m | No       |                                  |
+| cpu_stolen_note                          | ""       | No       |                                  |
+| cpu_stolen_docs                          | ""       | No       |                                  |
+| cpu_stolen_filter_override               | ""       | No       |                                  |
+| cpu_stolen_alerting_enabled              | True     | No       |                                  |
+| cpu_stolen_priority                      | 3        | No       | Number from 1 (high) to 5 (low). |
+| cpu_stolen_notification_channel_override | ""       | No       |                                  |
 
 
 ## CPU
@@ -137,7 +159,6 @@ Not getting monitoring data could mean anything, best is to assume the host is d
 | dd_agent_data_enabled                       | True                                     | No       |                                  |
 | dd_agent_data_note                          | ""                                       | No       |                                  |
 | dd_agent_data_docs                          | Not getting monitoring data could mean anything, best is to assume the host is down and consider this a major event | No       |                                  |
-| dd_agent_data_filter_override               | ""                                       | No       |                                  |
 | dd_agent_data_include_tags_override         | None                                     | No       |                                  |
 | dd_agent_data_exclude_tags_override         | None                                     | No       |                                  |
 | dd_agent_data_alerting_enabled              | True                                     | No       |                                  |
@@ -227,11 +248,6 @@ avg(last_5m):min:system.disk.in_use{tag:xxx} by {${var.alert_by}} * 100 > 90
 | disk_in_use_percentage_docs                          | Default disabled, only use when disk_free_percent is not giving results | No       |                                  |
 | disk_in_use_percentage_filter_override               | ""                                       | No       |                                  |
 | disk_in_use_percentage_alerting_enabled              | True                                     | No       |                                  |
-| disk_in_use_percentage_no_data_timeframe             | None                                     | No       |                                  |
-| disk_in_use_percentage_notify_no_data                | False                                    | No       |                                  |
-| disk_in_use_percentage_ok_threshold                  | None                                     | No       |                                  |
-| disk_in_use_percentage_name_prefix                   | ""                                       | No       |                                  |
-| disk_in_use_percentage_name_suffix                   | ""                                       | No       |                                  |
 | disk_in_use_percentage_priority                      | 2                                        | No       | Number from 1 (high) to 5 (low). |
 | disk_in_use_percentage_notification_channel_override | ""                                       | No       |                                  |
 
@@ -255,7 +271,7 @@ avg(${var.disk_io_wait_evaluation_period}):avg:system.cpu.iowait{${local.disk_io
 | disk_io_wait_docs                          | The CPU is mainly waiting for data to be written on disk. This means in general that application running on this machine is stalled | No       |                                  |
 | disk_io_wait_filter_override               | ""                                       | No       |                                  |
 | disk_io_wait_alerting_enabled              | True                                     | No       |                                  |
-| disk_io_wait_priority                      | 2                                        | No       | Number from 1 (high) to 5 (low). |
+| disk_io_wait_priority                      | 3                                        | No       | Number from 1 (high) to 5 (low). |
 | disk_io_wait_notification_channel_override | ""                                       | No       |                                  |
 
 
@@ -320,13 +336,16 @@ avg(last_5m):100 * min:system.mem.usable{tag:xxx} by {${var.alert_by}} / min:sys
 | memory_usable_percent_docs                          | This looks at system.mem.usable, only use this when memory_free_percent doesn't have data | No       |                                  |
 | memory_usable_percent_filter_override               | ""                                       | No       |                                  |
 | memory_usable_percent_alerting_enabled              | True                                     | No       |                                  |
-| memory_usable_percent_no_data_timeframe             | None                                     | No       |                                  |
-| memory_usable_percent_notify_no_data                | False                                    | No       |                                  |
-| memory_usable_percent_ok_threshold                  | None                                     | No       |                                  |
-| memory_usable_percent_name_prefix                   | ""                                       | No       |                                  |
-| memory_usable_percent_name_suffix                   | ""                                       | No       |                                  |
 | memory_usable_percent_priority                      | 2                                        | No       | Number from 1 (high) to 5 (low). |
 | memory_usable_percent_notification_channel_override | ""                                       | No       |                                  |
+
+
+## Ntp Check
+
+| variable                   | default  | required | description  |
+|----------------------------|----------|----------|--------------|
+| ntp_check_enabled          | True     | No       |              |
+| ntp_check_alerting_enabled | True     | No       |              |
 
 
 ## Packets In Errors
