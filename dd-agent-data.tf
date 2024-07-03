@@ -1,6 +1,6 @@
 module "dd_agent_data" {
-  source  = "kabisa/service-check-monitor/datadog"
-  version = "2.0.0"
+  source  = "weglot/service-check-monitor/datadog"
+  version = "2.1.0"
 
   name        = "System - Datadog data missing"
   metric_name = "datadog.agent.up"
@@ -41,7 +41,7 @@ module "dd_agent_data" {
   service              = var.service
   service_display_name = var.service_display_name
   additional_tags      = var.additional_tags
-  locked               = var.locked
   name_prefix          = var.name_prefix
   name_suffix          = var.name_suffix
+  restricted_roles     = var.restricted_roles
 }

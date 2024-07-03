@@ -6,8 +6,8 @@ locals {
 }
 
 module "disk_in_use_percentage" {
-  source  = "kabisa/generic-monitor/datadog"
-  version = "1.0.0"
+  source  = "weglot/generic-monitor/datadog"
+  version = "1.1.0"
 
   name  = "Disk In Use Percentage"
   query = "avg(${var.disk_in_use_percentage_evaluation_period}):min:system.disk.in_use{${local.disk_in_use_percentage_filter}} by {${var.alert_by}} * 100 > ${var.disk_in_use_percentage_critical}"
@@ -32,7 +32,7 @@ module "disk_in_use_percentage" {
   service              = var.service
   service_display_name = var.service_display_name
   additional_tags      = var.additional_tags
-  locked               = var.locked
   name_prefix          = var.name_prefix
   name_suffix          = var.name_suffix
+  restricted_roles     = var.restricted_roles
 }

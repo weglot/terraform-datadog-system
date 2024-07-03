@@ -6,8 +6,8 @@ locals {
 }
 
 module "memory_usable_percent" {
-  source  = "kabisa/generic-monitor/datadog"
-  version = "1.0.0"
+  source  = "weglot/generic-monitor/datadog"
+  version = "1.1.0"
 
   name  = "Memory Usable Percent"
   query = "avg(${var.memory_usable_percent_evaluation_period}):100 * min:system.mem.usable{${local.memory_usable_percent_filter}} by {${var.alert_by}} / min:system.mem.total{${local.memory_usable_percent_filter}} by {${var.alert_by}} < ${var.memory_usable_percent_critical}"
@@ -32,7 +32,7 @@ module "memory_usable_percent" {
   service              = var.service
   service_display_name = var.service_display_name
   additional_tags      = var.additional_tags
-  locked               = var.locked
   name_prefix          = var.name_prefix
   name_suffix          = var.name_suffix
+  restricted_roles     = var.restricted_roles
 }

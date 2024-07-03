@@ -6,8 +6,8 @@ locals {
 }
 
 module "disk_free_bytes" {
-  source  = "kabisa/generic-monitor/datadog"
-  version = "1.0.0"
+  source  = "weglot/generic-monitor/datadog"
+  version = "1.1.0"
 
   name             = "System - Disk Free (bytes)"
   query            = "avg(${var.disk_free_bytes_evaluation_period}):min:system.disk.free{${local.disk_free_bytes_filter}} by {host,device} < ${var.disk_free_bytes_critical}"
@@ -29,7 +29,7 @@ module "disk_free_bytes" {
   service              = var.service
   service_display_name = var.service_display_name
   additional_tags      = var.additional_tags
-  locked               = var.locked
   name_prefix          = var.name_prefix
   name_suffix          = var.name_suffix
+  restricted_roles     = var.restricted_roles
 }

@@ -39,9 +39,10 @@ variable "name_suffix" {
   default     = ""
 }
 
-variable "locked" {
-  type    = bool
-  default = true
+variable "restricted_roles" {
+  description = "A list of unique role identifiers to define which roles are allowed to edit the monitor"
+  type        = list(string)
+  default     = []
 }
 
 # The default values for the following two variables can be found in the
