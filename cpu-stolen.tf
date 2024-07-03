@@ -6,8 +6,8 @@ locals {
 }
 
 module "cpu_stolen" {
-  source  = "kabisa/generic-monitor/datadog"
-  version = "1.0.0"
+  source  = "weglot/generic-monitor/datadog"
+  version = "1.1.0"
 
   name             = "System - High cpu.stolen usage"
   query            = "avg(${var.cpu_stolen_evaluation_period}):avg:system.cpu.stolen{${local.cpu_stolen_filter}} by {${var.alert_by}} > ${var.cpu_stolen_critical}"
@@ -29,7 +29,7 @@ module "cpu_stolen" {
   service              = var.service
   service_display_name = var.service_display_name
   additional_tags      = var.additional_tags
-  locked               = var.locked
   name_prefix          = var.name_prefix
   name_suffix          = var.name_suffix
+  restricted_roles     = var.restricted_roles
 }

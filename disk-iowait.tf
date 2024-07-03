@@ -6,8 +6,8 @@ locals {
 }
 
 module "disk_io_wait" {
-  source  = "kabisa/generic-monitor/datadog"
-  version = "1.0.0"
+  source  = "weglot/generic-monitor/datadog"
+  version = "1.1.0"
 
   name             = "System - Disk IO Wait"
   query            = "avg(${var.disk_io_wait_evaluation_period}):avg:system.cpu.iowait{${local.disk_io_wait_filter}} by {${var.alert_by}} > ${var.disk_io_wait_critical}"
@@ -29,7 +29,7 @@ module "disk_io_wait" {
   service              = var.service
   service_display_name = var.service_display_name
   additional_tags      = var.additional_tags
-  locked               = var.locked
   name_prefix          = var.name_prefix
   name_suffix          = var.name_suffix
+  restricted_roles     = var.restricted_roles
 }

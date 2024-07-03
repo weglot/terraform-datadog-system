@@ -465,7 +465,7 @@ avg(${var.swap_percent_free_evaluation_period}):min:system.swap.pct_free{${local
 | additional_tags            | []       | No       | Additional tags to set on the monitor. Good tagging can be hard but very useful to make cross sections of the environment. Datadog has a few default tags. https://docs.datadoghq.com/getting_started/tagging/ is a good place to start reading about tags |
 | name_prefix                | ""       | No       | Can be used to prefix to the Monitor name                                                            |
 | name_suffix                | ""       | No       | Can be used to suffix to the Monitor name                                                            |
-| locked                     | True     | No       |                                                                                                      |
+| restricted_roles           | []       | No       | A list of unique role identifiers to define which roles are allowed to edit the monitor              |
 | service_check_include_tags | None     | No       | List of tags for the \"over\" part of the query. Can be either key:value tags or boolean tags.       |
 | service_check_exclude_tags | None     | No       | List of tags for the \"exclude\" part of the query. Can be either key:value tags or boolean tags.    |
 | priority_offset            | 0        | No       | For non production workloads we can +1 on the priorities                                             |

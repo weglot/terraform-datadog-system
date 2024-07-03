@@ -6,8 +6,8 @@ locals {
 }
 
 module "memory_free_percent" {
-  source  = "kabisa/generic-monitor/datadog"
-  version = "1.0.0"
+  source  = "weglot/generic-monitor/datadog"
+  version = "1.1.0"
 
   name = "System - Memory Free Percent"
   # Note: system.mem.pct_usable is actually a faction not a percentage
@@ -30,7 +30,7 @@ module "memory_free_percent" {
   service              = var.service
   service_display_name = var.service_display_name
   additional_tags      = var.additional_tags
-  locked               = var.locked
   name_prefix          = var.name_prefix
   name_suffix          = var.name_suffix
+  restricted_roles     = var.restricted_roles
 }

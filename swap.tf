@@ -6,8 +6,8 @@ locals {
 }
 
 module "swap_percent_free" {
-  source  = "kabisa/generic-monitor/datadog"
-  version = "1.0.0"
+  source  = "weglot/generic-monitor/datadog"
+  version = "1.1.0"
 
   name                = "System - Swap percent free"
   query               = "avg(${var.swap_percent_free_evaluation_period}):min:system.swap.pct_free{${local.swap_percent_free_filter}} by {${var.alert_by}} * 100 < ${var.swap_percent_free_critical}"
@@ -30,7 +30,7 @@ module "swap_percent_free" {
   service              = var.service
   service_display_name = var.service_display_name
   additional_tags      = var.additional_tags
-  locked               = var.locked
   name_prefix          = var.name_prefix
   name_suffix          = var.name_suffix
+  restricted_roles     = var.restricted_roles
 }

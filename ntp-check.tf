@@ -1,6 +1,6 @@
 module "ntp-check" {
-  source  = "kabisa/service-check-monitor/datadog"
-  version = "2.0.0"
+  source  = "weglot/service-check-monitor/datadog"
+  version = "2.1.0"
 
   name        = "System - NTP check"
   metric_name = "ntp.in_sync"
@@ -23,6 +23,7 @@ module "ntp-check" {
   additional_tags      = var.additional_tags
   name_prefix          = var.name_prefix
   name_suffix          = var.name_suffix
+  restricted_roles     = var.restricted_roles
 
   # monitor level vars
   enabled            = var.ntp_check_enabled
