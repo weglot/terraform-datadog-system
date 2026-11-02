@@ -1,0 +1,4 @@
+# @see https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners#example-of-a-codeowners-file
+
+# These owners will be the default owners for everything in the repo, unless a later match takes precedence.
+* @weglot/infra
