@@ -22,7 +22,7 @@ Modules are generated with this tool: https://github.com/kabisa/datadog-terrafor
 
 ```terraform
 module "system" {
-  source = "kabisa/system/datadog"
+  source = "weglot/system/datadog"
 
   notification_channel       = "mail@example.com"
   service                    = "ServiceX"

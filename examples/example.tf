@@ -1,5 +1,5 @@
 module "system" {
-  source = "kabisa/system/datadog"
+  source = "weglot/system/datadog"
 
   notification_channel       = "mail@example.com"
   service                    = "ServiceX"
